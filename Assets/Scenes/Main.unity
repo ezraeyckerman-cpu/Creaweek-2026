@@ -543,7 +543,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -623,9 +623,9 @@ MonoBehaviour:
   cropName: Graan
   price: 10
   visualIndicator: {fileID: 0}
-  seedPrefab: {fileID: 0}
+  seedPrefab: {fileID: 6686525079613083166, guid: 368494e238d32714387678fe02034dce, type: 3}
   spawnLocation: {fileID: 33468897}
-  interactAction: {fileID: 0}
+  interactAction: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!1 &126552971
 GameObject:
   m_ObjectHideFlags: 0
@@ -2221,7 +2221,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2301,9 +2301,9 @@ MonoBehaviour:
   cropName: Graan
   price: 10
   visualIndicator: {fileID: 0}
-  seedPrefab: {fileID: 0}
+  seedPrefab: {fileID: 956950697685806172, guid: 8937671e239f3e940a4a2eca58958c25, type: 3}
   spawnLocation: {fileID: 306622074}
-  interactAction: {fileID: 0}
+  interactAction: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!1 &511363245
 GameObject:
   m_ObjectHideFlags: 0
@@ -4718,7 +4718,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -4798,7 +4798,7 @@ MonoBehaviour:
   cropName: Mais
   price: 10
   visualIndicator: {fileID: 0}
-  seedPrefab: {fileID: 6686525079613083166, guid: 368494e238d32714387678fe02034dce, type: 3}
+  seedPrefab: {fileID: 2872037814943027608, guid: 765ec4eb781deea44bf12d0af17df91b, type: 3}
   spawnLocation: {fileID: 1416018602}
   interactAction: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!1001 &1000863674
@@ -7864,7 +7864,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -7944,9 +7944,9 @@ MonoBehaviour:
   cropName: Graan
   price: 10
   visualIndicator: {fileID: 0}
-  seedPrefab: {fileID: 0}
+  seedPrefab: {fileID: 5701200310830601907, guid: 5ac429d24b37e51478635df29581cdd1, type: 3}
   spawnLocation: {fileID: 352172319}
-  interactAction: {fileID: 0}
+  interactAction: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!1001 &1858807789
 PrefabInstance:
   m_ObjectHideFlags: 0
