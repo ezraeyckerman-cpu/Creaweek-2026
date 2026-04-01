@@ -2382,7 +2382,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74043cb9f0d9c6c4ba2da5e2e3c6037e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CropsUIManager
-  _uiElements: []
+  _uiElements:
+  - {fileID: 22017946}
+  - {fileID: 1769166088}
+  - {fileID: 1232816771}
+  - {fileID: 966633909}
 --- !u!114 &511363249
 MonoBehaviour:
   m_ObjectHideFlags: 0
