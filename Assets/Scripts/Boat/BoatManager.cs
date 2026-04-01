@@ -128,6 +128,7 @@ public class BoatManager : MonoBehaviour
                         //crate spawning
                         if (totalSlots / 6 * currentCrate == currentFilledSlots)
                         {
+                            Debug.Log(currentCrate);
                             gameObject.transform.GetChild(currentCrate - 1).gameObject.SetActive(true);
                             currentCrate++;
                         }
