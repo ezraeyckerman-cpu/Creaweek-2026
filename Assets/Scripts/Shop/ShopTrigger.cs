@@ -4,13 +4,13 @@ using UnityEngine.InputSystem;
 public class ShopTrigger : MonoBehaviour
 {
     [Header("Shop Settings")]
-    public CropSO cropToBuy;
+    public string cropName = "Graan";  // Naam van het zaad (voor de log)
     public int price = 10;
-    public GameObject visualIndicator;
+    public GameObject visualIndicator; // De cirkel/icoon die verschijnt
 
     [Header("Spawn Settings")]
-    public GameObject seedPrefab;      // Het 3D model van het zaadzakje
-    public Transform spawnLocation;    // Sleep hier je 'Empty GameObject' in
+    public GameObject seedPrefab;      // De 3D prefab van het zaadje/zakje
+    public Transform spawnLocation;    // Waar het zaadje moet verschijnen (Empty GameObject)
 
     [Header("Input Action")]
     public InputActionReference interactAction;
@@ -20,45 +20,62 @@ public class ShopTrigger : MonoBehaviour
     private void OnEnable() => interactAction.action.Enable();
     private void OnDisable() => interactAction.action.Disable();
 
+    void Start()
+    {
+        if (visualIndicator != null) visualIndicator.SetActive(false);
+    }
+
     void Update()
     {
+        // Check of de speler in de zone staat en de knop indrukt
         if (playerInRange && interactAction.action.WasPressedThisFrame())
         {
-            ProcessPurchase();
+            BuyItem();
         }
     }
 
-    void ProcessPurchase()
+    void BuyItem()
     {
+        // 1. Check of er genoeg goud is in de ShopManager
         if (ShopManager.Instance != null && ShopManager.Instance.TryBuyItem(price))
         {
-            // 1. Voeg toe aan de digitale lijst
-            CropManager.Instance.AddHarvestedCrop(cropToBuy.CropName, 1);
-
-            // 2. SPAWN het fysieke object in de wereld
-            SpawnSeedPhysical();
-
-            Debug.Log($"Gekocht en gespawned: {cropToBuy.CropName}!");
+            // 2. Spawn het fysieke GameObject
+            SpawnSeed();
+            Debug.Log($"Gekocht: {cropName} voor {price} goud!");
+        }
+        else
+        {
+            Debug.Log("Niet genoeg goud!");
         }
     }
 
-    void SpawnSeedPhysical()
+    void SpawnSeed()
     {
         if (seedPrefab != null && spawnLocation != null)
         {
-            // Maak het zaadje aan op de plek van het Empty GameObject
-            GameObject newSeed = Instantiate(seedPrefab, spawnLocation.position, spawnLocation.rotation);
+            // Deze lijn laat in de console zien WELKE prefab er op WELKE trigger wordt gespawnd
+            Debug.Log("Spawning " + seedPrefab.name + " op trigger: " + gameObject.name);
 
-            // Optioneel: Geef het een kleine "hop" omhoog met physics als het een Rigidbody heeft
-            Rigidbody rb = newSeed.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.AddForce(Vector3.up * 2f, ForceMode.Impulse);
-            }
+            GameObject newSeed = Instantiate(seedPrefab, spawnLocation.position, spawnLocation.rotation);
+            // ... rest van je code
         }
     }
 
-    // --- OnTrigger functies blijven hetzelfde als voorheen ---
-    private void OnTriggerEnter(Collider other) { if (other.CompareTag("Player")) { playerInRange = true; if (visualIndicator != null) visualIndicator.SetActive(true); } }
-    private void OnTriggerExit(Collider other) { if (other.CompareTag("Player")) { playerInRange = false; if (visualIndicator != null) visualIndicator.SetActive(false); } }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = true;
+            if (visualIndicator != null) visualIndicator.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = false;
+            if (visualIndicator != null) visualIndicator.SetActive(false);
+        }
+    }
 }
