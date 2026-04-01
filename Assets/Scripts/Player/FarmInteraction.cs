@@ -27,6 +27,8 @@ public class FarmInteraction : MonoBehaviour
     [SerializeField] private float _holdTimer;
     private bool held;
 
+    private bool ISPlaying;
+
     private void Start()
     {
         _itemHolder = GetComponent<ItemHolder>();
@@ -106,12 +108,14 @@ public class FarmInteraction : MonoBehaviour
 
     void TriggerAnimation()
     {
+        if (ISPlaying) return;
         _animator.SetTrigger("UseTool");
     }
     void Plowing()
     {
         if (_tile.IsPlowed) return;
         TriggerAnimation();
+        ISPlaying = true;
 
         _progressSlider.value = _holdTimer / holdInterval;
         if (held && _holdTimer >= holdInterval)
@@ -119,6 +123,7 @@ public class FarmInteraction : MonoBehaviour
             Debug.Log("p1");
             _tile.PlowPlot();
             _holdTimer = 0;
+            ISPlaying = false;
             return;
         }
         _holdTimer += Time.deltaTime;
@@ -128,6 +133,7 @@ public class FarmInteraction : MonoBehaviour
     {
         if (_tile.IsPlanted) return;
         TriggerAnimation();
+        ISPlaying = true;
 
         _progressSlider.value = _holdTimer / holdInterval;
         if (held && _holdTimer >= holdInterval)
@@ -143,6 +149,7 @@ public class FarmInteraction : MonoBehaviour
                 }
             }
             _holdTimer = 0;
+            ISPlaying = false;
             return;
         }
         _holdTimer += Time.deltaTime;
@@ -152,6 +159,7 @@ public class FarmInteraction : MonoBehaviour
     {
         if (_tile.IsWatered) return;
         TriggerAnimation();
+        ISPlaying = true;
 
         _progressSlider.value = _holdTimer / holdInterval;
         if (held && _holdTimer >= holdInterval)
@@ -159,6 +167,7 @@ public class FarmInteraction : MonoBehaviour
             Debug.Log("w1");
             _tile.WaterPlot();
             _holdTimer = 0;
+            ISPlaying = false;
             return;
         }
         _holdTimer += Time.deltaTime;
@@ -168,6 +177,7 @@ public class FarmInteraction : MonoBehaviour
     {
         if (!_tile.IsReadyToHarvest) return;
         TriggerAnimation();
+        ISPlaying = true;
 
         _progressSlider.value = _holdTimer / holdInterval;
         if (held && _holdTimer >= holdInterval)
@@ -178,6 +188,7 @@ public class FarmInteraction : MonoBehaviour
             if(crop != null)
                 crop.RequestHarvest();
             _holdTimer = 0;
+            ISPlaying = false;
             return;
         }
         _holdTimer += Time.deltaTime;
