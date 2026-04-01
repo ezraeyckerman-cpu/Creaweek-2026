@@ -40,6 +40,7 @@ public class BoatManager : MonoBehaviour
 
     // Boot Type: Wisselt tussen Goud en Score
     private bool isSellBoat = true;
+    private int currentCrate = 1;
 
     private enum BoatState { Coming, Waiting, Leaving, Gone }
     [SerializeField] private BoatState currentState = BoatState.Gone;
@@ -123,6 +124,14 @@ public class BoatManager : MonoBehaviour
                         SpawnFlyingItem();
                         GiveReward(); // Geef goud OF score
                         currentFilledSlots++;
+
+                        //crate spawning
+                        if (totalSlots / 6 * currentCrate == currentFilledSlots)
+                        {
+                            gameObject.transform.GetChild(currentCrate - 1).gameObject.SetActive(true);
+                            currentCrate++;
+                        }
+
                         yield return new WaitForSeconds(GetAdjustedTimePerItem());
                     }
                 }
