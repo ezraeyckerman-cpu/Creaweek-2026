@@ -456,7 +456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FarmInteraction
   _progressSlider: {fileID: 7873922698744663064}
-  holdInterval: 1.25
+  holdInterval: 0.8
   movement: {fileID: 4678769367644989201}
   Mode: 0
   _holdTimer: 0
