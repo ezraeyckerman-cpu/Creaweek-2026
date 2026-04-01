@@ -22,3 +22,4 @@ MonoBehaviour:
   ResultCrop: {fileID: 3986719047322993311, guid: 2c03d0cf5a2c2a7479f7579681214d60, type: 3}
   CropYieldMin: 2
   CropYieldMax: 6
+  GoldValue: 5

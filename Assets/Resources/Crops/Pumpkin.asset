@@ -17,8 +17,9 @@ MonoBehaviour:
   - {fileID: 7982512113238520401, guid: 89fe30fb20dfe9d49bb12427d1536000, type: 3}
   - {fileID: 5856718378624083155, guid: d0eaff1ed53266446a82a380851fa6ef, type: 3}
   - {fileID: 6062947299577560451, guid: f0d59390a792b6642ad393dcda92577e, type: 3}
-  GrowthTime: 20
+  GrowthTime: 15
   CropSprite: {fileID: 21300000, guid: 4c12c7bf0a9fbd04daa838bb6f1f4d85, type: 3}
   ResultCrop: {fileID: 6062947299577560451, guid: f0d59390a792b6642ad393dcda92577e, type: 3}
   CropYieldMin: 1
   CropYieldMax: 1
+  GoldValue: 10
