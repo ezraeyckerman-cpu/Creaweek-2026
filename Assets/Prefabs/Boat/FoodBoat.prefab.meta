@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/Boat.prefab.meta
+guid: f800e249dff2ba44aac997c966a0dcd4
+========
+guid: 822035ff062c0bb4bb6608498ca22784
+>>>>>>>> origin/VFX:Assets/Prefabs/VFX/FX_StarParticle_Basic.prefab.meta
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

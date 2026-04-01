@@ -324,6 +324,7 @@ GameObject:
   - component: {fileID: 22017943}
   - component: {fileID: 22017945}
   - component: {fileID: 22017944}
+  - component: {fileID: 22017946}
   m_Layer: 5
   m_Name: Mais
   m_TagString: Untagged
@@ -389,6 +390,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 22017942}
   m_CullTransparentMesh: 1
+--- !u!114 &22017946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22017942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6bb0b34cb975df4f98406d81fa9e023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CropUIElement
+  CropName: Mais
+  AmountText: {fileID: 318013191}
 --- !u!1 &25351846
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,7 +1527,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2367,7 +2382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74043cb9f0d9c6c4ba2da5e2e3c6037e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CropsUIManager
-  _maisText: {fileID: 318013191}
+  _uiElements: []
 --- !u!114 &511363249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2880,7 +2895,6 @@ Transform:
   - {fileID: 126552975}
   - {fileID: 2126741209}
   - {fileID: 13560662}
-  - {fileID: 1940873532}
   - {fileID: 219584525}
   - {fileID: 1596052375}
   - {fileID: 418857909}
@@ -3269,7 +3283,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100
+  m_text: '0
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4569,6 +4585,7 @@ GameObject:
   - component: {fileID: 966633906}
   - component: {fileID: 966633908}
   - component: {fileID: 966633907}
+  - component: {fileID: 966633909}
   m_Layer: 5
   m_Name: Potato
   m_TagString: Untagged
@@ -4634,6 +4651,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 966633905}
   m_CullTransparentMesh: 1
+--- !u!114 &966633909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966633905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6bb0b34cb975df4f98406d81fa9e023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CropUIElement
+  CropName: Potato
+  AmountText: {fileID: 742070372}
 --- !u!1 &979702890
 GameObject:
   m_ObjectHideFlags: 0
@@ -5105,7 +5136,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5487,7 +5518,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6011,6 +6042,7 @@ GameObject:
   - component: {fileID: 1232816768}
   - component: {fileID: 1232816770}
   - component: {fileID: 1232816769}
+  - component: {fileID: 1232816771}
   m_Layer: 5
   m_Name: Pumpkin
   m_TagString: Untagged
@@ -6076,6 +6108,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1232816767}
   m_CullTransparentMesh: 1
+--- !u!114 &1232816771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232816767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6bb0b34cb975df4f98406d81fa9e023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CropUIElement
+  CropName: Pumpkin
+  AmountText: {fileID: 1151859574}
 --- !u!1001 &1269023664
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7611,6 +7657,7 @@ GameObject:
   - component: {fileID: 1769166085}
   - component: {fileID: 1769166087}
   - component: {fileID: 1769166086}
+  - component: {fileID: 1769166088}
   m_Layer: 5
   m_Name: 'Carrot '
   m_TagString: Untagged
@@ -7676,6 +7723,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1769166084}
   m_CullTransparentMesh: 1
+--- !u!114 &1769166088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769166084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6bb0b34cb975df4f98406d81fa9e023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CropUIElement
+  CropName: Carrot
+  AmountText: {fileID: 1031254844}
 --- !u!1 &1772619696
 GameObject:
   m_ObjectHideFlags: 0
@@ -8390,118 +8451,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1921635491}
   m_CullTransparentMesh: 1
---- !u!1 &1940873531
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1940873532}
-  - component: {fileID: 1940873535}
-  - component: {fileID: 1940873534}
-  - component: {fileID: 1940873533}
-  m_Layer: 0
-  m_Name: Invisible wall (6)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1940873532
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1940873531}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 29.2168, y: 0, z: -18.93}
-  m_LocalScale: {x: 1, y: 12.819, z: 41.39726}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 632199496}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!65 &1940873533
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1940873531}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1940873534
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1940873531}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_MaskInteraction: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1940873535
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1940873531}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &1951603450
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9001,8 +8950,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 115864552185450619, guid: 70fd0ff7c34286947b994f9be2c848c0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2045712731}
   m_SourcePrefab: {fileID: 100100000, guid: 70fd0ff7c34286947b994f9be2c848c0, type: 3}
+--- !u!1 &2045712730 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 115864552185450619, guid: 70fd0ff7c34286947b994f9be2c848c0, type: 3}
+  m_PrefabInstance: {fileID: 2045712729}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &2045712731
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045712730}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4596239184023814631, guid: ce83d821b475ec44aad92608bd7f7e79, type: 3}
 --- !u!1 &2075886771
 GameObject:
   m_ObjectHideFlags: 0
