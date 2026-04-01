@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4508427871799510508}
   - component: {fileID: 8207046917484290850}
   - component: {fileID: 8971520296135491508}
+  - component: {fileID: 823726019644440296}
   m_Layer: 0
   m_Name: PlayerConfiguration
   m_TagString: Untagged
@@ -77,3 +78,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnPlayerSetupMenu
   PlayerSetupPrefab: {fileID: 4652706575726297896, guid: e4bc8be48536b814596d6e067db4963f, type: 3}
   Input: {fileID: 8207046917484290850}
+--- !u!114 &823726019644440296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105349260164658840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78a05c7d4d8622d41886905c02ce9587, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  playerPrefab: {fileID: 5662303090255242290, guid: d3b07e31d96ecba41986be9ecc85309a, type: 3}
+  spawnLocations: {fileID: 0}
