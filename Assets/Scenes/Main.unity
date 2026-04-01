@@ -2918,6 +2918,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8097902986608285830, guid: 7ed384e851acc474db55ad7a2517f5c3, type: 3}
+      propertyPath: boatManager
+      value: 
+      objectReference: {fileID: 593522736}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
