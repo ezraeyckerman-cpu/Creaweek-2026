@@ -1023,6 +1023,10 @@ PrefabInstance:
       propertyPath: InitialModule.startSizeZ.scalar
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 731267320980274798, guid: adeefc90d430b904c91a87fdd08a3806, type: 3}
+      propertyPath: EmissionModule.rateOverDistance.scalar
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1226984379229468028, guid: adeefc90d430b904c91a87fdd08a3806, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
