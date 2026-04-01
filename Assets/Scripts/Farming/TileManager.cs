@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class TileManager : MonoBehaviour
@@ -48,6 +45,7 @@ public class TileManager : MonoBehaviour
             if(!tile.HasBomb)
             {
                 tile.BombObject = BombObject;
+                tile.Spawnbomb();
                 tile.HasBomb = true;
                 tile.gameObject.name = "Tile with mine";
                 BombAmount++;

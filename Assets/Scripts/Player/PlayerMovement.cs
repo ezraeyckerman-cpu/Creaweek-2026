@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Player variables")]
     [SerializeField] private CharacterController controller;
     [SerializeField] private Renderer renderer;
+    [SerializeField] private float stunTime;
 
     [Header("movement variables")]
     [SerializeField] private float playerSpeed;
@@ -20,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _velocity;
 
     public bool Bombed;
+    private bool HasStunned;
 
     public bool IsPerformingAction;
     private ParticleSystem.EmissionModule _emission;
@@ -37,6 +40,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleMovement()
     {
+        if (Bombed && !HasStunned)
+        {
+            StartCoroutine(StunTime());
+        }
+
         if (_movementInput == Vector2.zero)
         {
             _emission.enabled = false; // when stopped
@@ -65,14 +73,15 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Vector3 XZVelocity = new Vector3(transform.forward.x, 0, transform.forward.z) * movement.magnitude;
-        if (Bombed) XZVelocity = _velocity;
+        if (HasStunned && Bombed) XZVelocity = _velocity;
+        if (HasStunned) XZVelocity = Vector3.zero;
         _velocity = new Vector3(XZVelocity.x, _velocity.y, XZVelocity.z);
         _emission.enabled = true;  // when moving       
 
         //_movementParticles.Play();
         controller.Move(_velocity * Time.deltaTime);
     }
-
+        
     public void InitializePlayer(PlayerConfiguration pc)
     {
         _configuration = pc;
@@ -89,5 +98,12 @@ public class PlayerMovement : MonoBehaviour
     public void AddVelocity(Vector3 velocity)
     {
         _velocity += velocity;
+    }
+
+    IEnumerator StunTime()
+    {
+        HasStunned = true;
+        yield return new WaitForSeconds(stunTime);
+        HasStunned = false;
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class FarmTile : MonoBehaviour
@@ -94,5 +95,11 @@ public class FarmTile : MonoBehaviour
         PlantedCrop.ParentFarmTile = this;
         PlantedCrop.CropData = cropData;
         PlantedCrop.VisualRoot = plantedCropObject.transform;
+    }
+    
+    public void Spawnbomb()
+    {
+        var bomb = Instantiate(BombObject, transform.position, Quaternion.identity);
+        bomb.GetComponent<Mine>().ParentTile = this;
     }
 }

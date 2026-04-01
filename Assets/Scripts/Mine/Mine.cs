@@ -7,6 +7,8 @@ public class Mine : MonoBehaviour
     [SerializeField] private float force;
     [SerializeField] private float triggerTime;
 
+    public FarmTile ParentTile;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Player")
@@ -41,5 +43,7 @@ public class Mine : MonoBehaviour
                 continue;
             }
         }
+        ParentTile.HasBomb = false;
+        Destroy(gameObject);
     }
 }

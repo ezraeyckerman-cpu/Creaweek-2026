@@ -436,8 +436,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   controller: {fileID: 8841860128146948635}
   renderer: {fileID: 8845562023367079950}
+  stunTime: 4
   playerSpeed: 5
-  rotationSpeed: 20
+  rotationSpeed: 6
   _movementParticles: {fileID: 6445500224794954213}
   _animator: {fileID: 5556594745519598178}
   Bombed: 0
@@ -455,7 +456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FarmInteraction
   _progressSlider: {fileID: 7873922698744663064}
-  holdInterval: 0.5
+  holdInterval: 1.25
   movement: {fileID: 4678769367644989201}
   Mode: 0
   _holdTimer: 0
