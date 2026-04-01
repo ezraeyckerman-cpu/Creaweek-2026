@@ -14,6 +14,7 @@ public partial class PlantedCrop
         public override void OnEnter()
         {
             Context.PlayGrownParticles(true);
+            Context.ParentFarmTile.IsReadyToHarvest = true;
         }
 
         public override void HarvestCrop()

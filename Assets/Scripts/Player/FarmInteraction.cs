@@ -89,19 +89,15 @@ public class FarmInteraction : MonoBehaviour
                 break;
             case InteractionMode.Plowing:
                 Plowing();
-                TriggerAnimation();
                 break;
             case InteractionMode.Planting:
                 Planting();
-                TriggerAnimation();
                 break;
             case InteractionMode.Watering:
                 Watering();
-                TriggerAnimation();
                 break;
             case InteractionMode.Harvesting:
                 Harvesting();
-                TriggerAnimation();
                 break;
         }
     }
@@ -114,7 +110,8 @@ public class FarmInteraction : MonoBehaviour
     }
     void Plowing()
     {
-        if (_tile.IsPlowed) return; 
+        if (_tile.IsPlowed) return;
+        TriggerAnimation();
 
         _progressSlider.value = _holdTimer / holdInterval;
         if (held && _holdTimer >= holdInterval)
@@ -129,6 +126,9 @@ public class FarmInteraction : MonoBehaviour
 
     void Planting()
     {
+        if (_tile.IsPlanted) return;
+        TriggerAnimation();
+
         _progressSlider.value = _holdTimer / holdInterval;
         if (held && _holdTimer >= holdInterval)
         {
@@ -145,30 +145,14 @@ public class FarmInteraction : MonoBehaviour
             _holdTimer = 0;
             return;
         }
-
-        if (_action.WasReleasedThisFrame())
-        {
-            if (_holdTimer < holdInterval)
-            {
-                SeedIdentifier seedIdentifier = _itemHolder.GetHeldSeedIdentifier();
-                if (seedIdentifier != null)
-                {
-                    CropSO cropData = CropManager.Instance.GetCropByName(seedIdentifier.CropName);
-                    if (cropData != null)
-                    {
-                        _tile.PlantPlot(cropData);
-                        Debug.Log($"Planted {seedIdentifier.CropName}");
-                    }
-                }
-            }
-            _holdTimer = 0;
-            return;
-        }
         _holdTimer += Time.deltaTime;
     }
 
     void Watering()
     {
+        if (_tile.IsWatered) return;
+        TriggerAnimation();
+
         _progressSlider.value = _holdTimer / holdInterval;
         if (held && _holdTimer >= holdInterval)
         {
@@ -177,22 +161,14 @@ public class FarmInteraction : MonoBehaviour
             _holdTimer = 0;
             return;
         }
-
-        if (_action.WasReleasedThisFrame())
-        {
-            if (_holdTimer < holdInterval)
-            {
-                Debug.Log("w2");
-                _tile.WaterPlot();
-            }
-            _holdTimer = 0;
-            return;
-        }
         _holdTimer += Time.deltaTime;
     }
 
     void Harvesting()
     {
+        if (!_tile.IsReadyToHarvest) return;
+        TriggerAnimation();
+
         _progressSlider.value = _holdTimer / holdInterval;
         if (held && _holdTimer >= holdInterval)
         {
@@ -201,20 +177,6 @@ public class FarmInteraction : MonoBehaviour
             PlantedCrop crop = _tile.PlantedCrop;
             if(crop != null)
                 crop.RequestHarvest();
-            _holdTimer = 0;
-            return;
-        }
-
-        if (_action.WasReleasedThisFrame())
-        {
-            if (_holdTimer < holdInterval)
-            {
-                Debug.Log("h2");
-                _tile.ResetPlot();
-                PlantedCrop crop = _tile.PlantedCrop;
-                if (crop != null)
-                    crop.RequestHarvest();
-            }
             _holdTimer = 0;
             return;
         }
