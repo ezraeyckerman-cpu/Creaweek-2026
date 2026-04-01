@@ -324,6 +324,7 @@ GameObject:
   - component: {fileID: 22017943}
   - component: {fileID: 22017945}
   - component: {fileID: 22017944}
+  - component: {fileID: 22017946}
   m_Layer: 5
   m_Name: Mais
   m_TagString: Untagged
@@ -389,6 +390,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 22017942}
   m_CullTransparentMesh: 1
+--- !u!114 &22017946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22017942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6bb0b34cb975df4f98406d81fa9e023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CropUIElement
+  CropName: Mais
+  AmountText: {fileID: 318013191}
 --- !u!1 &25351846
 GameObject:
   m_ObjectHideFlags: 0
@@ -2367,7 +2382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74043cb9f0d9c6c4ba2da5e2e3c6037e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CropsUIManager
-  _maisText: {fileID: 318013191}
+  _uiElements: []
 --- !u!114 &511363249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3268,7 +3283,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100
+  m_text: '0
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4568,6 +4585,7 @@ GameObject:
   - component: {fileID: 966633906}
   - component: {fileID: 966633908}
   - component: {fileID: 966633907}
+  - component: {fileID: 966633909}
   m_Layer: 5
   m_Name: Potato
   m_TagString: Untagged
@@ -4633,6 +4651,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 966633905}
   m_CullTransparentMesh: 1
+--- !u!114 &966633909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966633905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6bb0b34cb975df4f98406d81fa9e023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CropUIElement
+  CropName: Potato
+  AmountText: {fileID: 742070372}
 --- !u!1 &979702890
 GameObject:
   m_ObjectHideFlags: 0
@@ -6010,6 +6042,7 @@ GameObject:
   - component: {fileID: 1232816768}
   - component: {fileID: 1232816770}
   - component: {fileID: 1232816769}
+  - component: {fileID: 1232816771}
   m_Layer: 5
   m_Name: Pumpkin
   m_TagString: Untagged
@@ -6075,6 +6108,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1232816767}
   m_CullTransparentMesh: 1
+--- !u!114 &1232816771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232816767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6bb0b34cb975df4f98406d81fa9e023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CropUIElement
+  CropName: Pumpkin
+  AmountText: {fileID: 1151859574}
 --- !u!1001 &1269023664
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7610,6 +7657,7 @@ GameObject:
   - component: {fileID: 1769166085}
   - component: {fileID: 1769166087}
   - component: {fileID: 1769166086}
+  - component: {fileID: 1769166088}
   m_Layer: 5
   m_Name: 'Carrot '
   m_TagString: Untagged
@@ -7675,6 +7723,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1769166084}
   m_CullTransparentMesh: 1
+--- !u!114 &1769166088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769166084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6bb0b34cb975df4f98406d81fa9e023, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CropUIElement
+  CropName: Carrot
+  AmountText: {fileID: 1031254844}
 --- !u!1 &1772619696
 GameObject:
   m_ObjectHideFlags: 0

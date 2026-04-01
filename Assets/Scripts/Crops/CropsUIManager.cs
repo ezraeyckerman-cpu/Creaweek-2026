@@ -1,37 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TMPro;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class CropsUIManager : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _maisText;
+    // Sleep hier al je UI-elementen in via de Inspector
+    [SerializeField] private List<CropUIElement> _uiElements;
 
     private void Start()
     {
-        CropManager.Instance.CropHarvested += CropManager_CropHarvested;
+        CropManager.Instance.CropHarvested += UpdateUI;
     }
 
-    private void OnDisable()
+    private void UpdateUI(string cropName, int cropAmount)
     {
-        CropManager.Instance.CropHarvested -= CropManager_CropHarvested;
-    }
+        // Zoek in de lijst naar het element met de juiste naam
+        var element = _uiElements.Find(x => x.CropName.ToLower() == cropName.ToLower());
 
-    private void CropManager_CropHarvested(string cropName, int cropAmount)
-    {
-        cropName = cropName.ToLower();
-        switch (cropName)
+        if (element != null)
         {
-            case "mais":
-                _maisText.text = $"{cropAmount}";
-                break;
-
-            default:
-                Debug.LogError("Crop not found");
-                break;
+            element.UpdateAmount(cropAmount);
         }
     }
 }
