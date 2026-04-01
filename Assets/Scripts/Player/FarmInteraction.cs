@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -9,7 +10,7 @@ public enum InteractionMode
     Planting,
     Watering,
     Harvesting
-}   
+}
 
 public class FarmInteraction : MonoBehaviour
 {
@@ -28,6 +29,9 @@ public class FarmInteraction : MonoBehaviour
     private bool held;
 
     private bool ISPlaying;
+
+    public ParticleSystem PlowingParticles;
+    public List<ParticleSystem> WateringParticles;
 
     private void Start()
     {
@@ -114,13 +118,15 @@ public class FarmInteraction : MonoBehaviour
         if (ISPlaying) return;
         _animator.SetTrigger("UseTool");
     }
+
     void Plowing()
     {
         if (_tile.IsPlowed) return;
         TriggerAnimation();
         ISPlaying = true;
+        PlowingParticles.Play();
 
-        _progressSlider.value = _holdTimer / holdInterval;
+    _progressSlider.value = _holdTimer / holdInterval;
         if (held && _holdTimer >= holdInterval)
         {
             Debug.Log("p1");
@@ -163,6 +169,7 @@ public class FarmInteraction : MonoBehaviour
         if (_tile.IsWatered) return;
         TriggerAnimation();
         ISPlaying = true;
+        WateringParticles.ForEach(x => x.Play());
 
         _progressSlider.value = _holdTimer / holdInterval;
         if (held && _holdTimer >= holdInterval)

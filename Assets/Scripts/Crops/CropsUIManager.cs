@@ -9,6 +9,9 @@ using UnityEngine;
 public class CropsUIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _maisText;
+    [SerializeField] private TextMeshProUGUI _carrotText;
+    [SerializeField] private TextMeshProUGUI _potatoText;
+    [SerializeField] private TextMeshProUGUI _pumpkinText;
 
     private void Start()
     {
@@ -29,6 +32,15 @@ public class CropsUIManager : MonoBehaviour
                 _maisText.text = $"{cropAmount}";
                 break;
 
+            case "carrot":
+                _carrotText.text = $"{cropAmount}";
+                break;
+            case "potato":
+                _potatoText.text = $"{cropAmount}";
+                break;
+            case "pumpkin":
+                _pumpkinText.text = $"{cropAmount}";
+                break;
             default:
                 Debug.LogError("Crop not found");
                 break;
