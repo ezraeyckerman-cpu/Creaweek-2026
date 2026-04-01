@@ -340,12 +340,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4861508292856810600}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.41, z: 0.82}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.12691817, y: -0.17270897, z: -0.7939838, w: -0.5689052}
+  m_LocalPosition: {x: -0.34696427, y: -0.08783138, z: 0.29700482}
+  m_LocalScale: {x: 0.5817124, y: 0.58171254, z: 0.58171266}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6387607621108705798}
+  m_Father: {fileID: 2604657190846888238}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5662303090255242290
 GameObject:
@@ -384,7 +384,6 @@ Transform:
   m_Children:
   - {fileID: 2016717285288488984}
   - {fileID: 2146633420627762393}
-  - {fileID: 3168491874674815327}
   - {fileID: 3729061056184671844}
   - {fileID: 4778847269805294327}
   - {fileID: 2195042317751810339}
@@ -969,12 +968,20 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 7d41be61684ffe840a446a9bbb502cba, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4058852915679833821, guid: 86a3a6ab0e4b2c245b7c8cd4f4df6743, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 3168491874674815327}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86a3a6ab0e4b2c245b7c8cd4f4df6743, type: 3}
 --- !u!4 &2016717285288488984 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 86a3a6ab0e4b2c245b7c8cd4f4df6743, type: 3}
+  m_PrefabInstance: {fileID: 2050941935304038387}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2604657190846888238 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4058852915679833821, guid: 86a3a6ab0e4b2c245b7c8cd4f4df6743, type: 3}
   m_PrefabInstance: {fileID: 2050941935304038387}
   m_PrefabAsset: {fileID: 0}
 --- !u!95 &5556594745519598178 stripped
@@ -1005,7 +1012,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 731267320980274798, guid: adeefc90d430b904c91a87fdd08a3806, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 1.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 731267320980274798, guid: adeefc90d430b904c91a87fdd08a3806, type: 3}
       propertyPath: InitialModule.startSizeY.scalar
