@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CropSO
   CropName: Potato
   GameObjects:
-  - {fileID: 8034587939906334398, guid: d6e1dbe1cf6fdb74ebf36afc510beaa1, type: 3}
-  - {fileID: 8024688971262522664, guid: 07567fcca6618e6419ab666bb63a8d6f, type: 3}
-  - {fileID: 6506651458253822616, guid: ac6838c5083a62345947beb36b25a93e, type: 3}
+  - {fileID: 2002995898892331926, guid: 37a7d91e923c0354581ef4ce3a854e16, type: 3}
+  - {fileID: 6730701233864407477, guid: 2ff86d0051f91884db3d1f6b380abd25, type: 3}
+  - {fileID: 3599057229449181394, guid: 52fd76ec1344c4942adabaeaabe1284a, type: 3}
   GrowthTime: 20
-  CropSprite: {fileID: 0}
+  CropSprite: {fileID: 21300000, guid: 07489c94d73d93b4c96678bcc16dcdb9, type: 3}
   ResultCrop: {fileID: 3986719047322993311, guid: 2c03d0cf5a2c2a7479f7579681214d60, type: 3}
-  CropYieldMin: 2
-  CropYieldMax: 6
+  CropYieldMin: 5
+  CropYieldMax: 10
