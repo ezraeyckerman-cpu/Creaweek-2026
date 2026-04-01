@@ -9,6 +9,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2dac6b30c3b50924f9b31fb6d60480bb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2dac6b30c3b50924f9b31fb6d60480bb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2dac6b30c3b50924f9b31fb6d60480bb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2dac6b30c3b50924f9b31fb6d60480bb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.91
       objectReference: {fileID: 0}
@@ -56,8 +68,92 @@ PrefabInstance:
       propertyPath: m_Name
       value: PumpkinBag
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2dac6b30c3b50924f9b31fb6d60480bb, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2dac6b30c3b50924f9b31fb6d60480bb, type: 3}
+      propertyPath: m_TagString
+      value: Seed
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2dac6b30c3b50924f9b31fb6d60480bb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -8729324356961903585}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2dac6b30c3b50924f9b31fb6d60480bb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7118236005024305499}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2dac6b30c3b50924f9b31fb6d60480bb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4579847158916495186}
   m_SourcePrefab: {fileID: 100100000, guid: 2dac6b30c3b50924f9b31fb6d60480bb, type: 3}
+--- !u!1 &956950697685806172 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2dac6b30c3b50924f9b31fb6d60480bb, type: 3}
+  m_PrefabInstance: {fileID: 109964661978485005}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-8729324356961903585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956950697685806172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53e22dbbb53c3fe47b72af0d3518e40e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SeedIdentifier
+  cropName: Pumpkin
+--- !u!64 &7118236005024305499
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956950697685806172}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1090896701757692880, guid: 2dac6b30c3b50924f9b31fb6d60480bb, type: 3}
+--- !u!54 &4579847158916495186
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956950697685806172}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
