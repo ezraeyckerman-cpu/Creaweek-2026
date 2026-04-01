@@ -17,14 +17,14 @@ public class FarmTile : MonoBehaviour
     public PlantedCrop PlantedCrop { get; private set; }
     public bool IsPlowed { get; private set; }
     public bool IsWatered { get; private set; }
+    public bool IsPlanted { get; private set; }
+    public bool IsReadyToHarvest { get; set; }
 
     public bool HasBomb { get; set; }
     public GameObject BombObject;
 
     private float _timer;
     public float WateringTimer = 10f;
-
-    public bool IsReadyToHarvest { get; private set; }
 
     private void Start()
     {
@@ -75,6 +75,8 @@ public class FarmTile : MonoBehaviour
     {
         IsPlowed = false;
         IsWatered = false;
+        IsPlanted = false;
+        IsReadyToHarvest = false;
         renderer.material = materialStates[0];
     }
 
@@ -95,11 +97,12 @@ public class FarmTile : MonoBehaviour
         PlantedCrop.ParentFarmTile = this;
         PlantedCrop.CropData = cropData;
         PlantedCrop.VisualRoot = plantedCropObject.transform;
+        IsPlanted = true;
     }
     
     public void Spawnbomb()
     {
-        var bomb = Instantiate(BombObject, transform.position, Quaternion.identity);
+        var bomb = Instantiate(BombObject, transform.position - transform.up / 10, Quaternion.identity);
         bomb.GetComponent<Mine>().ParentTile = this;
     }
 }

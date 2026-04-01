@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 movement = new Vector3(_movementInput.x, 0f, _movementInput.y) * playerSpeed;
         if (IsPerformingAction) movement = movement / 2;
 
-        if(movement.sqrMagnitude > 0.001f)
+        if(movement.sqrMagnitude > 0.001f && !HasStunned)
         {
             _animator.SetBool("IsWalking", true);
             Quaternion targetRotation = Quaternion.LookRotation(movement, Vector3.up);
