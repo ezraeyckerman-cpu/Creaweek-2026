@@ -376,6 +376,11 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!4 &33468897 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 789211678945665562, guid: bc099d62df010074cb359c4be7119a0d, type: 3}
+  m_PrefabInstance: {fileID: 3184100}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &117477854
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,6 +393,7 @@ GameObject:
   - component: {fileID: 117477858}
   - component: {fileID: 117477857}
   - component: {fileID: 117477856}
+  - component: {fileID: 117477859}
   m_Layer: 0
   m_Name: Mais
   m_TagString: Untagged
@@ -490,6 +496,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117477854}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &117477859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117477854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808cdb28205f2cc40bdcda6620d07967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopTrigger
+  cropName: Graan
+  price: 10
+  visualIndicator: {fileID: 0}
+  seedPrefab: {fileID: 0}
+  spawnLocation: {fileID: 33468897}
+  interactAction: {fileID: 0}
 --- !u!1 &126552971
 GameObject:
   m_ObjectHideFlags: 0
@@ -1224,6 +1248,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 632199496}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &306622074 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5762149284080782979, guid: bc099d62df010074cb359c4be7119a0d, type: 3}
+  m_PrefabInstance: {fileID: 3184100}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &316604308
 GameObject:
   m_ObjectHideFlags: 0
@@ -1451,6 +1480,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 318013189}
   m_CullTransparentMesh: 1
+--- !u!4 &352172319 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2380750312696765855, guid: bc099d62df010074cb359c4be7119a0d, type: 3}
+  m_PrefabInstance: {fileID: 3184100}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &356752436
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2037,6 +2071,7 @@ GameObject:
   - component: {fileID: 509278831}
   - component: {fileID: 509278830}
   - component: {fileID: 509278829}
+  - component: {fileID: 509278832}
   m_Layer: 0
   m_Name: Pumpkin
   m_TagString: Untagged
@@ -2139,6 +2174,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 509278827}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &509278832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509278827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808cdb28205f2cc40bdcda6620d07967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopTrigger
+  cropName: Graan
+  price: 10
+  visualIndicator: {fileID: 0}
+  seedPrefab: {fileID: 0}
+  spawnLocation: {fileID: 306622074}
+  interactAction: {fileID: 0}
 --- !u!1 &511363245
 GameObject:
   m_ObjectHideFlags: 0
@@ -4512,6 +4565,7 @@ GameObject:
   - component: {fileID: 995111818}
   - component: {fileID: 995111817}
   - component: {fileID: 995111816}
+  - component: {fileID: 995111819}
   m_Layer: 0
   m_Name: Potato
   m_TagString: Untagged
@@ -4614,6 +4668,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 995111814}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &995111819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995111814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808cdb28205f2cc40bdcda6620d07967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopTrigger
+  cropName: Mais
+  price: 10
+  visualIndicator: {fileID: 0}
+  seedPrefab: {fileID: 6686525079613083166, guid: 368494e238d32714387678fe02034dce, type: 3}
+  spawnLocation: {fileID: 1416018602}
+  interactAction: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!1001 &1000863674
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6240,6 +6312,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1412718319}
   m_CullTransparentMesh: 1
+--- !u!4 &1416018602 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8171229882921918192, guid: bc099d62df010074cb359c4be7119a0d, type: 3}
+  m_PrefabInstance: {fileID: 3184100}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1465315075
 GameObject:
   m_ObjectHideFlags: 0
@@ -7634,6 +7711,7 @@ GameObject:
   - component: {fileID: 1843038086}
   - component: {fileID: 1843038085}
   - component: {fileID: 1843038084}
+  - component: {fileID: 1843038087}
   m_Layer: 0
   m_Name: Carrot
   m_TagString: Untagged
@@ -7736,6 +7814,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1843038082}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1843038087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843038082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808cdb28205f2cc40bdcda6620d07967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopTrigger
+  cropName: Graan
+  price: 10
+  visualIndicator: {fileID: 0}
+  seedPrefab: {fileID: 0}
+  spawnLocation: {fileID: 352172319}
+  interactAction: {fileID: 0}
 --- !u!1001 &1858807789
 PrefabInstance:
   m_ObjectHideFlags: 0
