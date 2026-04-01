@@ -501,8 +501,8 @@ Transform:
   m_GameObject: {fileID: 198566027}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.739, y: 0.74600005, z: -0.802}
-  m_LocalScale: {x: 0.5352735, y: 0.36930695, z: 1.369501}
+  m_LocalPosition: {x: -0.591, y: 1.217, z: -1.073}
+  m_LocalScale: {x: 0.9106073, y: 0.62826496, z: 2.3297951}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1481945702}
@@ -1771,6 +1771,8 @@ MonoBehaviour:
     cropPrefab: {fileID: 919132149155446097, guid: 3b1c9e37f75dd3240ae91a85d5d4ff7d, type: 3}
   - cropName: Potato
     cropPrefab: {fileID: 919132149155446097, guid: 3b1c9e37f75dd3240ae91a85d5d4ff7d, type: 3}
+  goldPerItem: 15
+  scorePerItem: 100
   playerBackpack: {fileID: 2035444825}
   totalSlots: 5
   timePerItem: 1
@@ -3582,8 +3584,8 @@ Transform:
   m_GameObject: {fileID: 981065119}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.739, y: 0.74600005, z: -0.802}
-  m_LocalScale: {x: 0.5352735, y: 0.36930695, z: 1.369501}
+  m_LocalPosition: {x: -0.74, y: 1.45, z: -1.09}
+  m_LocalScale: {x: 1.1250914, y: 0.7762463, z: 2.8785543}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 825617318}
@@ -4342,8 +4344,8 @@ Transform:
   m_GameObject: {fileID: 1135907232}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.791, y: 0.74600005, z: -0.745}
-  m_LocalScale: {x: 0.5352735, y: 0.36930695, z: 1.369501}
+  m_LocalPosition: {x: 0.598, y: 1.473, z: -1.083}
+  m_LocalScale: {x: 1.1692514, y: 0.8067141, z: 2.991538}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1481945702}
@@ -5314,8 +5316,8 @@ Transform:
   m_GameObject: {fileID: 1469597648}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.791, y: 0.74600005, z: -0.745}
-  m_LocalScale: {x: 0.5352735, y: 0.36930695, z: 1.369501}
+  m_LocalPosition: {x: 0.65, y: 1.59, z: -1.02}
+  m_LocalScale: {x: 1.1629353, y: 0.8023563, z: 2.9753778}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 825617318}
