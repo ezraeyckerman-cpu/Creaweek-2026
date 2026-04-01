@@ -67,7 +67,10 @@ public class FarmInteraction : MonoBehaviour
         _action.started += _ => held = true;
         _action.canceled += _ => held = false;
 
-        movement.IsPerformingAction = held;
+        if (Mode != InteractionMode.Idle)
+        {
+            movement.IsPerformingAction = held;
+        }
 
         //determine what action is used
         if (_tile == null)
@@ -76,7 +79,7 @@ public class FarmInteraction : MonoBehaviour
             return;
         }
 
-        if (!held) 
+        if (!held || Mode == InteractionMode.Idle) 
         {
             _holdTimer = 0;
             _progressSlider.gameObject.SetActive(false);

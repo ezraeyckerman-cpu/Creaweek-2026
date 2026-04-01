@@ -14,5 +14,6 @@ public class CropSO : ScriptableObject
     public GameObject ResultCrop;
     public int CropYieldMin;
     public int CropYieldMax;
+    public float GoldValue;
 }
 
