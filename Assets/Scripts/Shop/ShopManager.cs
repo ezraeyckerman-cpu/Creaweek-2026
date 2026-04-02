@@ -31,6 +31,6 @@ public class ShopManager : MonoBehaviour
 
     void UpdateGoldUI()
     {
-        if (goldText != null) goldText.text = "Gold: " + currentGold;
+        if (goldText != null) goldText.text = $"{currentGold}";
     }
 }
