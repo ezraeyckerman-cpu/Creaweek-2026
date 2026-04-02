@@ -10,5 +10,15 @@ public class SeedIdentifier : MonoBehaviour
     [SerializeField] private string cropName;
 
     public string CropName => cropName;
+
+    public int Amount = 5;
+
+    public void Update()
+    {
+        if(Amount <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 }
 
