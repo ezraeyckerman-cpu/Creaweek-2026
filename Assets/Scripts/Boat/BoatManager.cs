@@ -12,9 +12,10 @@ public class BoatManager : MonoBehaviour
         public GameObject cropPrefab;
     }
 
-    public GameObject[] boats;
+    [Header("Boat Visuals")]
+    public GameObject[] boats; // Index 0 = Gold Boat, Index 1 = Score Boat
 
-    [Header("Movement")]
+    [Header("Movement Points")]
     public Transform startPoint;
     public Transform dockPoint;
     public Transform exitPoint;
@@ -25,15 +26,18 @@ public class BoatManager : MonoBehaviour
 
     [Header("Rewards")]
     public int goldPerItem = 15;
-    public int scorePerItem = 100;
+    public int scorePerItem = 10; 
 
-    [Header("Settings & Timer")]
-    public TextMeshPro boatTimerText; // Sleep je TextMesh object hierin
-    public float currentRespawnTime = 20f; // Starttijd
-    private float minRespawnTime = 15.1f;
+    [Header("UI References")]
+    public TextMeshPro boatTimerText;
+    public ScoreUI scoreUIScript; 
+
+    [Header("Timer Settings")]
+    public float currentRespawnTime = 60f;
+    private float minRespawnTime = 30f;
     private float timeReduction = 5f;
 
-    [Header("Player Settings")]
+    [Header("Player & Delivery Settings")]
     public Transform playerBackpack;
     public int totalSlots = 6;
     public float timePerItem = 0.8f;
@@ -59,7 +63,7 @@ public class BoatManager : MonoBehaviour
     void Start()
     {
         InitializeCropDictionary();
-        _amountPerCrate = totalSlots / 6f;
+        _amountPerCrate = (float)totalSlots / 6f;
         StartCoroutine(BoatRoutine());
     }
 
@@ -77,17 +81,8 @@ public class BoatManager : MonoBehaviour
         }
     }
 
-    public void AddPlayerToZone()
-    {
-        PlayersInZone++;
-        playerInZone = true;
-    }
-
-    public void RemovePlayerFromZone()
-    {
-        PlayersInZone = Mathf.Max(0, PlayersInZone - 1);
-        playerInZone = PlayersInZone > 0;
-    }
+    public void AddPlayerToZone() { PlayersInZone++; playerInZone = true; }
+    public void RemovePlayerFromZone() { PlayersInZone = Mathf.Max(0, PlayersInZone - 1); playerInZone = PlayersInZone > 0; }
 
     private float GetAdjustedTimePerItem()
     {
@@ -99,9 +94,9 @@ public class BoatManager : MonoBehaviour
     {
         while (true)
         {
-            // 1. WACHTEN & TIMER LOGICA
+            // 1. WACHTEN & TIMER
             currentState = BoatState.Gone;
-            transform.position = new Vector3(0, -100, 0); // Verstop de boot
+            transform.position = new Vector3(0, -100, 0);
 
             if (boatTimerText != null) boatTimerText.gameObject.SetActive(true);
 
@@ -109,18 +104,17 @@ public class BoatManager : MonoBehaviour
             while (timer > 0)
             {
                 if (boatTimerText != null)
-                    boatTimerText.text = $"{Mathf.Ceil(timer).ToString()}";
-
+                {
+                    string typeLabel = isSellBoat ? "GOUD BOOT" : "SCORE BOOT";
+                    boatTimerText.text = $"{typeLabel}\n{Mathf.Ceil(timer)}s";
+                }
                 timer -= Time.deltaTime;
                 yield return null;
             }
 
-            // Boot komt eraan: Tekst uit
             if (boatTimerText != null) boatTimerText.gameObject.SetActive(false);
-
             if (possibleCrops.Count == 0) yield break;
 
-            // Landmines genereren
             if (TileManager.Instance != null)
                 TileManager.Instance.GenerateBombs();
 
@@ -128,8 +122,8 @@ public class BoatManager : MonoBehaviour
             currentFilledSlots = 0;
             currentCrate = 0;
 
-            // Zorg dat de visuele kratten uitstaan bij aankomst
-            for (int i = 0; i < 6; i++)
+            
+            for (int i = 0; i < transform.childCount; i++)
             {
                 transform.GetChild(i).gameObject.SetActive(false);
             }
@@ -154,13 +148,16 @@ public class BoatManager : MonoBehaviour
                     if (CropManager.Instance.TryRemoveHarvestedCrop(currentRequiredCrop, 1))
                     {
                         SpawnFlyingItem();
+
+                        
                         GiveReward();
+
                         currentFilledSlots++;
 
-                        // Crate spawning logica
                         while (currentFilledSlots >= _amountPerCrate * (currentCrate + 1) && currentCrate < 6)
                         {
-                            transform.GetChild(currentCrate).gameObject.SetActive(true);
+                            if (currentCrate < transform.childCount)
+                                transform.GetChild(currentCrate).gameObject.SetActive(true);
                             currentCrate++;
                         }
 
@@ -180,10 +177,10 @@ public class BoatManager : MonoBehaviour
                 yield return null;
             }
 
-            // Bereken tijd voor de volgende boot (-5 per keer, min. 30)
+            
             currentRespawnTime = Mathf.Max(minRespawnTime, currentRespawnTime - timeReduction);
 
-            // Wissel type voor de volgende boot
+            
             isSellBoat = !isSellBoat;
             if (boats.Length >= 2)
             {
@@ -202,7 +199,15 @@ public class BoatManager : MonoBehaviour
         }
         else
         {
-            Debug.Log($"+{scorePerItem} Score!");
+           
+            if (scoreUIScript != null)
+            {
+                scoreUIScript.AddScore(scorePerItem);
+            }
+            else
+            {
+                Debug.LogWarning("BoatManager: Geen ScoreUI script gevonden in de Inspector!");
+            }
         }
     }
 
