@@ -5330,12 +5330,12 @@ MonoBehaviour:
   _progressSlider: {fileID: 7873922698744663064}
   holdInterval: 0.95
   movement: {fileID: 4678769367644989201}
+  _animator: {fileID: 5556594745519598178}
   Mode: 0
   _holdTimer: 0
   PlowingParticles: {fileID: 1546782599830606816}
   WateringParticles:
   - {fileID: 3031587837312910997}
-  _animator: {fileID: 5556594745519598178}
 --- !u!114 &5833871816832101218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5391,7 +5391,7 @@ AudioSource:
   m_Resource: {fileID: 8300000, guid: 876d7cf15d784b84ea22a16ca4fc0ed3, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.1
-  m_Pitch: 1
+  m_Pitch: 0.1
   Loop: 0
   Mute: 0
   Spatialize: 0

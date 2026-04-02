@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2531321522068582835}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.78628, y: -0, z: 0.96245}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.01745, y: 0, z: -0.51956}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -50,29 +50,11 @@ VisualEffect:
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array:
-      - m_Value: 0
-        m_Name: BurstDelay
-        m_Overridden: 1
-      - m_Value: 20
-        m_Name: BurstAmount
-        m_Overridden: 1
+      m_Array: []
     m_Vector2f:
-      m_Array:
-      - m_Value: {x: 0.5, y: 1}
-        m_Name: SetLifeTime Min/Max per component
-        m_Overridden: 1
+      m_Array: []
     m_Vector3f:
-      m_Array:
-      - m_Value: {x: 1, y: 1, z: 1}
-        m_Name: SetScale
-        m_Overridden: 1
-      - m_Value: {x: -3, y: 5, z: -3}
-        m_Name: SetVelocityMin
-        m_Overridden: 1
-      - m_Value: {x: 3, y: 10, z: 3}
-        m_Name: SetVelocityMax
-        m_Overridden: 1
+      m_Array: []
     m_Vector4f:
       m_Array: []
     m_Uint:
@@ -84,46 +66,11 @@ VisualEffect:
     m_AnimationCurve:
       m_Array: []
     m_Gradient:
-      m_Array:
-      - m_Value:
-          serializedVersion: 2
-          key0: {r: 3.8490567, g: 3.3519492, b: 0.5176471, a: 0}
-          key1: {r: 59.621822, g: 43.068153, b: 7.636316, a: 1}
-          key2: {r: 113.50943, g: 55.28149, b: 13.385544, a: 0.8}
-          key3: {r: 41.14403, g: 13.739526, b: 4.4637403, a: 0}
-          key4: {r: 3.4339623, g: 0.502136, b: 0.502136, a: 0}
-          key5: {r: 0, g: 0, b: 0, a: 0}
-          key6: {r: 0, g: 0, b: 0, a: 0}
-          key7: {r: 0, g: 0, b: 0, a: 0}
-          ctime0: 0
-          ctime1: 14649
-          ctime2: 33153
-          ctime3: 50693
-          ctime4: 65535
-          ctime5: 0
-          ctime6: 0
-          ctime7: 0
-          atime0: 0
-          atime1: 19853
-          atime2: 50308
-          atime3: 65535
-          atime4: 0
-          atime5: 0
-          atime6: 0
-          atime7: 0
-          m_Mode: 0
-          m_ColorSpace: -1
-          m_NumColorKeys: 5
-          m_NumAlphaKeys: 4
-        m_Name: SetColors
-        m_Overridden: 1
+      m_Array: []
     m_NamedObject:
       m_Array: []
     m_Bool:
-      m_Array:
-      - m_Value: 1
-        m_Name: IsLooping
-        m_Overridden: 1
+      m_Array: []
 --- !u!73398921 &4321183352725099060
 VFXRenderer:
   serializedVersion: 1
