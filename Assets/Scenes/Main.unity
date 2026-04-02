@@ -2695,7 +2695,6 @@ GameObject:
   - component: {fileID: 511363247}
   - component: {fileID: 511363246}
   - component: {fileID: 511363248}
-  - component: {fileID: 511363249}
   m_Layer: 0
   m_Name: CropManager
   m_TagString: Untagged
@@ -2751,22 +2750,6 @@ MonoBehaviour:
   _carrotText: {fileID: 1031254844}
   _potatoText: {fileID: 742070372}
   _pumpkinText: {fileID: 1151859574}
---- !u!114 &511363249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 511363245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54125559d11f24a4fa9708fe1e2b6d46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TileManager
-  MaxBombs: 4
-  BombAmount: 0
-  BombObject: {fileID: 2425247569660926928, guid: 2c619ea65187235449ecb0e76d3dce00, type: 3}
-  FarmTiles: []
 --- !u!1001 &511390684
 PrefabInstance:
   m_ObjectHideFlags: 0

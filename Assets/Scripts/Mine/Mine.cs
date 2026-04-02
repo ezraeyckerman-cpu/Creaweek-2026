@@ -9,6 +9,8 @@ public class Mine : MonoBehaviour
 
     public FarmTile ParentTile;
 
+    private bool _destroy = false;
+
     private void OnTriggerEnter(Collider other)
     {
         /*
@@ -20,7 +22,15 @@ public class Mine : MonoBehaviour
         */
     }
 
-    public IEnumerator TriggerMine()
+    private void Update()
+    {
+        if(_destroy)
+        {
+            Destroy(gameObject, 0.5f);
+        }
+    }
+
+    public IEnumerator TriggerMine(FarmTile farmtile)
     {
         yield return new WaitForSeconds(triggerTime);
 
@@ -45,7 +55,10 @@ public class Mine : MonoBehaviour
                 continue;
             }
         }
-        ParentTile.HasBomb = false;
-        Destroy(gameObject);
+
+        farmtile.HasBomb = false;
+        _destroy = true;
+        //ParentTile.HasBomb = false;
+        //DestroyImmediate(this.gameObject);
     }
 }
