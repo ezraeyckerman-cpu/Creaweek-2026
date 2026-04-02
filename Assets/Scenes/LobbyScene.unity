@@ -6677,8 +6677,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5517521163796918694}
   - component: {fileID: 6178806354892712753}
-  - component: {fileID: 6176905595750391468}
-  - component: {fileID: 5440393994268582043}
   m_Layer: 0
   m_Name: Boat (2)
   m_TagString: Boat
@@ -6735,36 +6733,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &5440393994268582043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5177447351851215644}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39d6aa03292c84520b3da93e241f1422, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BuoyantObject
-  waterHeight: -5.25
-  steepness: 0.2
-  wavelength: 2.16
-  speed: 0.57
-  directions:
-  - 1
-  - 0.5
-  - 0
-  - 0.5
-  strength: 2.2
-  objectDepth: 2.18
-  velocityDrag: 0.99
-  angularDrag: 0.5
-  effectors:
-  - {fileID: 9083901736059265176}
-  - {fileID: 5076968109191237318}
-  - {fileID: 4832936096034434179}
-  - {fileID: 7656725461053887245}
 --- !u!4 &5517521163796918694
 Transform:
   m_ObjectHideFlags: 0
@@ -6865,33 +6833,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 336585403}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &6176905595750391468
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5177447351851215644}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 0
-  m_CollisionDetection: 1
 --- !u!95 &6178806354892712753
 Animator:
   serializedVersion: 7
