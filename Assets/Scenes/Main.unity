@@ -3170,7 +3170,7 @@ MonoBehaviour:
   boatTimerText: {fileID: 1017108191}
   scoreUIScript: {fileID: 0}
   currentRespawnTime: 15
-  timeAtDock: 6
+  timeAtDock: 30
   playerBackpack: {fileID: 2035444825}
   totalSlots: 5
   timePerItem: 1
@@ -5716,8 +5716,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 20.72
+  m_fontSizeBase: 20.72
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5820,16 +5820,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1017108190}
-  m_LocalRotation: {x: 0.3233236, y: -0.45887154, z: 0.18386862, w: 0.80690217}
-  m_LocalPosition: {x: 0, y: 0, z: -0.61}
+  m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: -0.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 43.672, y: -59.252, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: -90, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.35, y: 2.62}
+  m_AnchoredPosition: {x: 5.84, y: 0.18}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1017578599
