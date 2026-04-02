@@ -24,7 +24,7 @@ public class BoardUI : MonoBehaviour
         if (boatManager == null || !boatManager.gameObject.activeInHierarchy)
         {
             FindBoat();
-            hasShownDone = false; // reset for new boat
+            hasShownDone = false;
         }
 
         if (boatManager == null) return;
@@ -71,7 +71,7 @@ public class BoardUI : MonoBehaviour
         // Enable correct crop
         switch (boatManager.currentRequiredCrop)
         {
-            case "Corn":
+            case "Mais":
                 _cornImage.SetActive(true);
                 break;
             case "Potato":
@@ -92,7 +92,7 @@ public class BoardUI : MonoBehaviour
         _potatoImage.SetActive(false);
         _pumpkinImage.SetActive(false);
         _carrotImage.SetActive(false);
-        _amountText.text = "";
+        _amountText.text = " ";
 
         _doneImage.SetActive(true);
 
