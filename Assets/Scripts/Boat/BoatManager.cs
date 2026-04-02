@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 public class BoatManager : MonoBehaviour
 {
@@ -26,23 +27,27 @@ public class BoatManager : MonoBehaviour
     public int goldPerItem = 15;
     public int scorePerItem = 100;
 
-    private Dictionary<string, GameObject> cropPrefabDict = new Dictionary<string, GameObject>();
-    private List<string> possibleCrops = new List<string>();
+    [Header("Settings & Timer")]
+    public TextMeshPro boatTimerText; // Sleep je TextMesh object hierin
+    public float currentRespawnTime = 60f; // Starttijd
+    private float minRespawnTime = 30f;
+    private float timeReduction = 5f;
 
-    [Header("Settings")]
+    [Header("Player Settings")]
     public Transform playerBackpack;
     public int totalSlots = 6;
     public float timePerItem = 0.8f;
-    public float boatRespawnTime = 10f;
     [SerializeField] private AudioSource sfxSource;
     [SerializeField] private AudioClip sfxClip;
+
+    private Dictionary<string, GameObject> cropPrefabDict = new Dictionary<string, GameObject>();
+    private List<string> possibleCrops = new List<string>();
 
     [HideInInspector] public int PlayersInZone = 0;
     private bool playerInZone = false;
     public string currentRequiredCrop;
     public int currentFilledSlots = 0;
 
-    // Boot Type: Wisselt tussen Goud en Score
     private bool isSellBoat = true;
     private int currentCrate = 0;
 
@@ -54,8 +59,8 @@ public class BoatManager : MonoBehaviour
     void Start()
     {
         InitializeCropDictionary();
+        _amountPerCrate = totalSlots / 6f;
         StartCoroutine(BoatRoutine());
-        _amountPerCrate = totalSlots / 6;
     }
 
     void InitializeCropDictionary()
@@ -94,22 +99,40 @@ public class BoatManager : MonoBehaviour
     {
         while (true)
         {
-            // 1. WACHTEN & RESET
+            // 1. WACHTEN & TIMER LOGICA
             currentState = BoatState.Gone;
-            transform.position = new Vector3(0, -100, 0);
-            yield return new WaitForSeconds(boatRespawnTime);
+            transform.position = new Vector3(0, -100, 0); // Verstop de boot
+
+            if (boatTimerText != null) boatTimerText.gameObject.SetActive(true);
+
+            float timer = currentRespawnTime;
+            while (timer > 0)
+            {
+                if (boatTimerText != null)
+                    boatTimerText.text = $"{Mathf.Ceil(timer).ToString()}";
+
+                timer -= Time.deltaTime;
+                yield return null;
+            }
+
+            // Boot komt eraan: Tekst uit
+            if (boatTimerText != null) boatTimerText.gameObject.SetActive(false);
 
             if (possibleCrops.Count == 0) yield break;
 
-            // LANDMINES GENEREREN (Via jouw TileManager)
+            // Landmines genereren
             if (TileManager.Instance != null)
                 TileManager.Instance.GenerateBombs();
 
             currentRequiredCrop = possibleCrops[Random.Range(0, possibleCrops.Count)];
             currentFilledSlots = 0;
+            currentCrate = 0;
 
-            string typeLabel = isSellBoat ? "GOLD BOAT" : "SCORE BOAT";
-            Debug.Log($"NIEUWE BOOT: {typeLabel}. Wil {totalSlots}x {currentRequiredCrop}!");
+            // Zorg dat de visuele kratten uitstaan bij aankomst
+            for (int i = 0; i < 6; i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(false);
+            }
 
             // 2. VAAR NAAR DOK
             transform.position = startPoint.position;
@@ -122,7 +145,8 @@ public class BoatManager : MonoBehaviour
 
             // 3. VULLEN
             currentState = BoatState.Waiting;
-            sfxSource.PlayOneShot(sfxClip);
+            if (sfxSource != null && sfxClip != null) sfxSource.PlayOneShot(sfxClip);
+
             while (currentFilledSlots < totalSlots)
             {
                 if (playerInZone && CropManager.Instance != null)
@@ -130,16 +154,14 @@ public class BoatManager : MonoBehaviour
                     if (CropManager.Instance.TryRemoveHarvestedCrop(currentRequiredCrop, 1))
                     {
                         SpawnFlyingItem();
-                        GiveReward(); // Geef goud OF score
+                        GiveReward();
                         currentFilledSlots++;
 
-                        //crate spawning
-                        while (currentFilledSlots >= _amountPerCrate * currentCrate && currentCrate != 6)
+                        // Crate spawning logica
+                        while (currentFilledSlots >= _amountPerCrate * (currentCrate + 1) && currentCrate < 6)
                         {
-                            Debug.Log(currentCrate);
-                            gameObject.transform.GetChild(currentCrate).gameObject.SetActive(true);
+                            transform.GetChild(currentCrate).gameObject.SetActive(true);
                             currentCrate++;
-                            yield return null;
                         }
 
                         yield return new WaitForSeconds(GetAdjustedTimePerItem());
@@ -158,11 +180,16 @@ public class BoatManager : MonoBehaviour
                 yield return null;
             }
 
+            // Bereken tijd voor de volgende boot (-5 per keer, min. 30)
+            currentRespawnTime = Mathf.Max(minRespawnTime, currentRespawnTime - timeReduction);
+
             // Wissel type voor de volgende boot
             isSellBoat = !isSellBoat;
-
-            boats[0].active = isSellBoat;
-            boats[1].active = !isSellBoat;
+            if (boats.Length >= 2)
+            {
+                boats[0].SetActive(isSellBoat);
+                boats[1].SetActive(!isSellBoat);
+            }
         }
     }
 
@@ -175,7 +202,6 @@ public class BoatManager : MonoBehaviour
         }
         else
         {
-            // Voeg hier je Score-logica toe
             Debug.Log($"+{scorePerItem} Score!");
         }
     }
