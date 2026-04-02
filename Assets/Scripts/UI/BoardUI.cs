@@ -92,7 +92,7 @@ public class BoardUI : MonoBehaviour
         _potatoImage.SetActive(false);
         _pumpkinImage.SetActive(false);
         _carrotImage.SetActive(false);
-        _amountText.text = "";
+        _amountText.text = " ";
 
         _doneImage.SetActive(true);
 
