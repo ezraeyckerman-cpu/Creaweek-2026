@@ -107,7 +107,7 @@ public class BoatManager : MonoBehaviour
             {
                 
                 string typeLabel = isSellBoat ? "GOUD" : "SCORE";
-                boatTimerText.text = $"{respawnTimer}";
+                boatTimerText.text = $"{Mathf.Ceil(respawnTimer)}";
 
                 respawnTimer -= Time.deltaTime;
                 yield return null;
@@ -146,7 +146,7 @@ public class BoatManager : MonoBehaviour
             while (dockTimer > 0 && currentFilledSlots < totalSlots)
             {
                 if (boatTimerText != null)
-                    boatTimerText.text = $"{respawnTimer}";
+                    boatTimerText.text = $"{Mathf.Ceil(respawnTimer)}";
 
                 if (playerInZone && CropManager.Instance != null)
                 {
