@@ -30,7 +30,13 @@ public class ItemHolder : MonoBehaviour
         {
             Interact();
         }
+        if(_tool == null)
+        {
+            IsHoldingItem = false;
+            FarmInteraction.Mode = InteractionMode.Idle;
+        }
     }
+
 
     private void Interact()
     {
