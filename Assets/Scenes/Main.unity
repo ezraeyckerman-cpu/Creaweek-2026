@@ -1484,7 +1484,7 @@ GameObject:
   - component: {fileID: 318013192}
   - component: {fileID: 318013191}
   m_Layer: 5
-  m_Name: Amount
+  m_Name: maisAmount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2510,8 +2510,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CropsUIManager
   _maisText: {fileID: 318013191}
   _carrotText: {fileID: 1031254844}
-  _potatoText: {fileID: 1151859574}
-  _pumpkinText: {fileID: 742070372}
+  _potatoText: {fileID: 742070372}
+  _pumpkinText: {fileID: 1151859574}
 --- !u!114 &511363249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2902,6 +2902,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34700efd51a054e4692027facb5f4ac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoatManager
+  boats: []
   startPoint: {fileID: 1634535452}
   dockPoint: {fileID: 1519018466}
   exitPoint: {fileID: 1107391082}
@@ -3429,7 +3430,7 @@ GameObject:
   - component: {fileID: 742070373}
   - component: {fileID: 742070372}
   m_Layer: 5
-  m_Name: Amount
+  m_Name: PotatoAmount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5373,7 +5374,7 @@ GameObject:
   - component: {fileID: 1031254845}
   - component: {fileID: 1031254844}
   m_Layer: 5
-  m_Name: Amount
+  m_Name: CarrotAmount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5755,7 +5756,7 @@ GameObject:
   - component: {fileID: 1151859575}
   - component: {fileID: 1151859574}
   m_Layer: 5
-  m_Name: Amount
+  m_Name: PumpkinAmount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
