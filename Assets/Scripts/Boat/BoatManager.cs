@@ -11,6 +11,8 @@ public class BoatManager : MonoBehaviour
         public GameObject cropPrefab;
     }
 
+    public GameObject[] boats;
+
     [Header("Movement")]
     public Transform startPoint;
     public Transform dockPoint;
@@ -40,15 +42,18 @@ public class BoatManager : MonoBehaviour
 
     // Boot Type: Wisselt tussen Goud en Score
     private bool isSellBoat = true;
-    private int currentCrate = 1;
+    private int currentCrate = 0;
 
     private enum BoatState { Coming, Waiting, Leaving, Gone }
     [SerializeField] private BoatState currentState = BoatState.Gone;
+
+    private float _amountPerCrate;
 
     void Start()
     {
         InitializeCropDictionary();
         StartCoroutine(BoatRoutine());
+        _amountPerCrate = totalSlots / 6;
     }
 
     void InitializeCropDictionary()
@@ -126,11 +131,12 @@ public class BoatManager : MonoBehaviour
                         currentFilledSlots++;
 
                         //crate spawning
-                        if (totalSlots / 6 * currentCrate == currentFilledSlots)
+                        while (currentFilledSlots >= _amountPerCrate * currentCrate && currentCrate != 6)
                         {
                             Debug.Log(currentCrate);
-                            gameObject.transform.GetChild(currentCrate - 1).gameObject.SetActive(true);
+                            gameObject.transform.GetChild(currentCrate).gameObject.SetActive(true);
                             currentCrate++;
+                            yield return null;
                         }
 
                         yield return new WaitForSeconds(GetAdjustedTimePerItem());
@@ -143,14 +149,17 @@ public class BoatManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
             currentState = BoatState.Leaving;
 
-            // Wissel type voor de volgende boot
-            isSellBoat = !isSellBoat;
-
             while (Vector3.Distance(transform.position, exitPoint.position) > 0.5f)
             {
                 MoveBoat(exitPoint.position);
                 yield return null;
             }
+
+            // Wissel type voor de volgende boot
+            isSellBoat = !isSellBoat;
+
+            boats[0].active = isSellBoat;
+            boats[1].active = !isSellBoat;
         }
     }
 
