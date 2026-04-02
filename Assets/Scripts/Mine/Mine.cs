@@ -11,11 +11,13 @@ public class Mine : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        /*
         if (other.transform.tag == "Player")
         {
             if (other.gameObject.GetComponent<FarmInteraction>().Mode == InteractionMode.Plowing)
                 StartCoroutine(TriggerMine());
         }
+        */
     }
 
     public IEnumerator TriggerMine()

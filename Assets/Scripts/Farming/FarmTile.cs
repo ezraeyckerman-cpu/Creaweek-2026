@@ -55,6 +55,10 @@ public class FarmTile : MonoBehaviour
         if (IsPlowed) return;
         IsPlowed = true;
         renderer.material = materialStates[1];
+        if (HasBomb)
+        {
+            StartCoroutine(BombObject.GetComponent<Mine>().TriggerMine());
+        }
     }
 
     public void WaterPlot()
