@@ -29,8 +29,8 @@ public class BoatManager : MonoBehaviour
 
     [Header("Settings & Timer")]
     public TextMeshPro boatTimerText; // Sleep je TextMesh object hierin
-    public float currentRespawnTime = 60f; // Starttijd
-    private float minRespawnTime = 30f;
+    public float currentRespawnTime = 20f; // Starttijd
+    private float minRespawnTime = 5f;
     private float timeReduction = 5f;
 
     [Header("Player Settings")]
