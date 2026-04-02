@@ -27,7 +27,7 @@ public class BoatManager : MonoBehaviour
     [Header("Rewards & Penalties")]
     public int goldPerItem = 15;
     public int scorePerItem = 10;
-    public int scorePenalty = 50; 
+    public int scorePenalty = 10;
 
     [Header("UI References")]
     public TextMeshPro boatTimerText;
@@ -66,6 +66,11 @@ public class BoatManager : MonoBehaviour
     {
         InitializeCropDictionary();
         _amountPerCrate = (float)totalSlots / 6f;
+
+        // Startpositie instellen en zorgen dat hij onzichtbaar begint
+        transform.position = startPoint.position;
+        UpdateBoatVisibility(false);
+
         StartCoroutine(BoatRoutine());
     }
 
@@ -90,44 +95,47 @@ public class BoatManager : MonoBehaviour
     {
         while (true)
         {
-            
+            // --- STATE: GONE ---
             currentState = BoatState.Gone;
-            transform.position = new Vector3(0, -100, 0);
+            UpdateBoatVisibility(false); // Zorg dat de boot niet zichtbaar is tijdens het wachten
+            transform.position = startPoint.position;
 
             if (boatTimerText != null) boatTimerText.gameObject.SetActive(true);
 
             float respawnTimer = currentRespawnTime;
             while (respawnTimer > 0)
             {
-                string typeLabel = isSellBoat ? "VOLGENDE: GOUD" : "VOLGENDE: SCORE";
-                boatTimerText.text = $"{typeLabel}\n{Mathf.Ceil(respawnTimer)}s";
+                boatTimerText.text = $"{Mathf.Ceil(respawnTimer)}";
                 respawnTimer -= Time.deltaTime;
                 yield return null;
             }
 
             if (possibleCrops.Count == 0) yield break;
 
-            if (TileManager.Instance != null)
-                TileManager.Instance.GenerateBombs();
-
+            // Voorbereiden voor vertrek
             currentRequiredCrop = possibleCrops[Random.Range(0, possibleCrops.Count)];
             currentFilledSlots = 0;
             currentCrate = 0;
 
-            
+            // Reset kratten (kinderen van dit object)
             for (int i = 0; i < transform.childCount; i++)
                 transform.GetChild(i).gameObject.SetActive(false);
 
-            
-            transform.position = startPoint.position;
+            if (TileManager.Instance != null)
+                TileManager.Instance.GenerateBombs();
+
+            // --- STATE: COMING ---
             currentState = BoatState.Coming;
-            while (Vector3.Distance(transform.position, dockPoint.position) > 0.5f)
+            UpdateBoatVisibility(true); // Boot wordt nu pas zichtbaar!
+            if (boatTimerText != null) boatTimerText.gameObject.SetActive(false);
+
+            while (Vector3.Distance(transform.position, dockPoint.position) > 0.1f)
             {
                 MoveBoat(dockPoint.position);
                 yield return null;
             }
 
-            
+            // --- STATE: WAITING ---
             currentState = BoatState.Waiting;
             if (boatTimerText != null) boatTimerText.gameObject.SetActive(true);
             if (sfxSource != null && sfxClip != null) sfxSource.PlayOneShot(sfxClip);
@@ -135,9 +143,8 @@ public class BoatManager : MonoBehaviour
             float dockTimer = timeAtDock;
             while (dockTimer > 0 && currentFilledSlots < totalSlots)
             {
-                
                 if (boatTimerText != null)
-                    boatTimerText.text = $"TIJD: {Mathf.Ceil(dockTimer)}s\n{currentFilledSlots}/{totalSlots}";
+                    boatTimerText.text = $"{Mathf.Ceil(dockTimer)}"; // Toon resterende dock tijd
 
                 if (playerInZone && CropManager.Instance != null)
                 {
@@ -160,34 +167,42 @@ public class BoatManager : MonoBehaviour
                 yield return null;
             }
 
-          
-            if (currentFilledSlots < totalSlots)
-            {
-                Debug.Log("Boot niet vol! Strafpunten.");
-                if (scoreUIScript != null)
-                    scoreUIScript.AddScore(-scorePenalty); 
-            }
+            // Strafpunten check
+            if (currentFilledSlots < totalSlots && scoreUIScript != null)
+                scoreUIScript.AddScore(-scorePenalty);
 
             if (boatTimerText != null) boatTimerText.gameObject.SetActive(false);
 
-           
-            yield return new WaitForSeconds(1f);
+            // --- STATE: LEAVING ---
+            yield return new WaitForSeconds(0.5f);
             currentState = BoatState.Leaving;
 
-            while (Vector3.Distance(transform.position, exitPoint.position) > 0.5f)
+            while (Vector3.Distance(transform.position, exitPoint.position) > 0.1f)
             {
                 MoveBoat(exitPoint.position);
                 yield return null;
             }
 
-           
-            currentRespawnTime = Mathf.Max(minRespawnTime, currentRespawnTime - timeReduction);
+            // --- DESPAWN & RESET ---
+            UpdateBoatVisibility(false); // Boot is weg, dus zet visuals uit
+
+            // Type wisselen voor de volgende keer
             isSellBoat = !isSellBoat;
-            if (boats.Length >= 2)
-            {
-                boats[0].SetActive(isSellBoat);
-                boats[1].SetActive(!isSellBoat);
-            }
+            currentRespawnTime = Mathf.Max(minRespawnTime, currentRespawnTime - timeReduction);
+
+            // Onzichtbaar terug naar start voor de volgende timer loop
+            transform.position = startPoint.position;
+        }
+    }
+
+    // Handige functie om de juiste boot aan of uit te zetten
+    void UpdateBoatVisibility(bool visible)
+    {
+        if (boats.Length >= 2)
+        {
+            // Als visible true is, check dan ook welk type (goud/score) actief moet zijn
+            boats[0].SetActive(visible && isSellBoat);
+            boats[1].SetActive(visible && !isSellBoat);
         }
     }
 
@@ -220,6 +235,6 @@ public class BoatManager : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
         Vector3 dir = (target - transform.position).normalized;
         if (dir != Vector3.zero)
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 2f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 5f);
     }
 }
