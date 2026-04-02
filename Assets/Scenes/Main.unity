@@ -2526,7 +2526,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileManager
   MaxBombs: 4
   BombAmount: 0
-  BombObject: {fileID: 8376458359854794664, guid: ed7a2c7f377d6534b82261383bbc1993, type: 3}
+  BombObject: {fileID: 2425247569660926928, guid: 2c619ea65187235449ecb0e76d3dce00, type: 3}
   FarmTiles: []
 --- !u!1001 &511390684
 PrefabInstance:
