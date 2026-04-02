@@ -438,6 +438,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1330991527706471195, guid: f800e249dff2ba44aac997c966a0dcd4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369283045219531922, guid: f800e249dff2ba44aac997c966a0dcd4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5177447351391671361, guid: f800e249dff2ba44aac997c966a0dcd4, type: 3}
       propertyPath: m_Name
       value: Boat (2)
