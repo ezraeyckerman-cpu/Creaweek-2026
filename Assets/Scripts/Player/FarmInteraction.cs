@@ -186,7 +186,7 @@ public class FarmInteraction : MonoBehaviour
     void Watering()
     {
         if (_tile.IsWatered) return;
-        TriggerAnimation();
+        //TriggerAnimation();
         WateringParticles.ForEach(x => x.Play());
 
         _progressSlider.value = _holdTimer / holdInterval;
