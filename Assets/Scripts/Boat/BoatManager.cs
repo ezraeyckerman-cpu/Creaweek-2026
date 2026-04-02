@@ -67,8 +67,9 @@ public class BoatManager : MonoBehaviour
         InitializeCropDictionary();
         _amountPerCrate = (float)totalSlots / 6f;
 
-        // Startpositie instellen en zorgen dat hij onzichtbaar begint
         transform.position = startPoint.position;
+
+        // Forceer alles uit bij start
         UpdateBoatVisibility(false);
 
         StartCoroutine(BoatRoutine());
@@ -97,7 +98,7 @@ public class BoatManager : MonoBehaviour
         {
             // --- STATE: GONE ---
             currentState = BoatState.Gone;
-            UpdateBoatVisibility(false); // Zorg dat de boot niet zichtbaar is tijdens het wachten
+            UpdateBoatVisibility(false); // Alles onder dit object gaat UIT
             transform.position = startPoint.position;
 
             if (boatTimerText != null) boatTimerText.gameObject.SetActive(true);
@@ -112,21 +113,20 @@ public class BoatManager : MonoBehaviour
 
             if (possibleCrops.Count == 0) yield break;
 
-            // Voorbereiden voor vertrek
+            // Voorbereiden
             currentRequiredCrop = possibleCrops[Random.Range(0, possibleCrops.Count)];
             currentFilledSlots = 0;
             currentCrate = 0;
 
-            // Reset kratten (kinderen van dit object)
-            for (int i = 0; i < transform.childCount; i++)
-                transform.GetChild(i).gameObject.SetActive(false);
+            // Reset kratten specifiek (die worden later weer aangezet tijdens het laden)
+            ResetCrates();
 
             if (TileManager.Instance != null)
                 TileManager.Instance.GenerateBombs();
 
             // --- STATE: COMING ---
             currentState = BoatState.Coming;
-            UpdateBoatVisibility(true); // Boot wordt nu pas zichtbaar!
+            UpdateBoatVisibility(true); // Alles (inclusief particles/rook) gaat AAN
             if (boatTimerText != null) boatTimerText.gameObject.SetActive(false);
 
             while (Vector3.Distance(transform.position, dockPoint.position) > 0.1f)
@@ -143,8 +143,7 @@ public class BoatManager : MonoBehaviour
             float dockTimer = timeAtDock;
             while (dockTimer > 0 && currentFilledSlots < totalSlots)
             {
-                if (boatTimerText != null)
-                    boatTimerText.text = $"{Mathf.Ceil(dockTimer)}"; // Toon resterende dock tijd
+                boatTimerText.text = $"{Mathf.Ceil(dockTimer)}";
 
                 if (playerInZone && CropManager.Instance != null)
                 {
@@ -156,6 +155,7 @@ public class BoatManager : MonoBehaviour
 
                         while (currentFilledSlots >= _amountPerCrate * (currentCrate + 1) && currentCrate < 6)
                         {
+                            // Activeer krat visual
                             if (currentCrate < transform.childCount)
                                 transform.GetChild(currentCrate).gameObject.SetActive(true);
                             currentCrate++;
@@ -167,7 +167,6 @@ public class BoatManager : MonoBehaviour
                 yield return null;
             }
 
-            // Strafpunten check
             if (currentFilledSlots < totalSlots && scoreUIScript != null)
                 scoreUIScript.AddScore(-scorePenalty);
 
@@ -183,41 +182,51 @@ public class BoatManager : MonoBehaviour
                 yield return null;
             }
 
-            // --- DESPAWN & RESET ---
-            UpdateBoatVisibility(false); // Boot is weg, dus zet visuals uit
-
-            // Type wisselen voor de volgende keer
+            // --- DESPAWN ---
+            UpdateBoatVisibility(false); // Alles gaat weer UIT (ook rook)
             isSellBoat = !isSellBoat;
             currentRespawnTime = Mathf.Max(minRespawnTime, currentRespawnTime - timeReduction);
-
-            // Onzichtbaar terug naar start voor de volgende timer loop
             transform.position = startPoint.position;
         }
     }
 
-    // Handige functie om de juiste boot aan of uit te zetten
     void UpdateBoatVisibility(bool visible)
     {
-        if (boats.Length >= 2)
+        // 1. Schakel ALLE directe kinderen uit/aan (rook, effecten, etc.)
+        for (int i = 0; i < transform.childCount; i++)
         {
-            // Als visible true is, check dan ook welk type (goud/score) actief moet zijn
-            boats[0].SetActive(visible && isSellBoat);
-            boats[1].SetActive(visible && !isSellBoat);
+            transform.GetChild(i).gameObject.SetActive(visible);
+        }
+
+        // 2. Als we zichtbaar moeten zijn, moeten we specifiek de JUISTE boot kiezen
+        if (visible && boats.Length >= 2)
+        {
+            boats[0].SetActive(isSellBoat);
+            boats[1].SetActive(!isSellBoat);
+
+            // Omdat we net alles hebben aangezet, moeten we de kratten die nog leeg horen te zijn weer UIT zetten
+            ResetCrates();
+        }
+
+        // 3. De timer tekst moet altijd even apart bekeken worden (mag aan blijven tijdens GONE)
+        if (boatTimerText != null && currentState == BoatState.Gone)
+            boatTimerText.gameObject.SetActive(true);
+    }
+
+    void ResetCrates()
+    {
+        // Zet alle kratten (meestal de eerste 6 children) uit
+        for (int i = 0; i < 6 && i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
         }
     }
 
+    // ... Rest van je functies (GiveReward, SpawnFlyingItem, MoveBoat) blijven hetzelfde ...
     void GiveReward()
     {
-        if (isSellBoat)
-        {
-            if (ShopManager.Instance != null)
-                ShopManager.Instance.currentGold += goldPerItem;
-        }
-        else
-        {
-            if (scoreUIScript != null)
-                scoreUIScript.AddScore(scorePerItem);
-        }
+        if (isSellBoat) { if (ShopManager.Instance != null) ShopManager.Instance.currentGold += goldPerItem; }
+        else { if (scoreUIScript != null) scoreUIScript.AddScore(scorePerItem); }
     }
 
     void SpawnFlyingItem()
