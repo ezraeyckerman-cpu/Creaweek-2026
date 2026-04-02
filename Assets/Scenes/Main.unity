@@ -3161,6 +3161,7 @@ MonoBehaviour:
   goldPerItem: 15
   scorePerItem: 100
   boatTimerText: {fileID: 1017108191}
+  scoreUIScript: {fileID: 458408044}
   currentRespawnTime: 15
   playerBackpack: {fileID: 2035444825}
   totalSlots: 5
