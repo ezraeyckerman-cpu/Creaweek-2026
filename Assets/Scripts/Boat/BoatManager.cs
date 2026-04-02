@@ -13,7 +13,7 @@ public class BoatManager : MonoBehaviour
     }
 
     [Header("Boat Visuals")]
-    public GameObject[] boats; // Index 0 = Gold Boat, Index 1 = Score Boat
+    public GameObject[] boats; // Index 0 = Gold, Index 1 = Score
 
     [Header("Movement Points")]
     public Transform startPoint;
@@ -24,18 +24,20 @@ public class BoatManager : MonoBehaviour
     [Header("Scalable Cargo Visuals")]
     public List<CropVisuals> allCropVisuals;
 
-    [Header("Rewards")]
+    [Header("Rewards & Penalties")]
     public int goldPerItem = 15;
-    public int scorePerItem = 10; 
+    public int scorePerItem = 10;
+    public int scorePenalty = 50; 
 
     [Header("UI References")]
     public TextMeshPro boatTimerText;
-    public ScoreUI scoreUIScript; 
+    public ScoreUI scoreUIScript;
 
-    [Header("Timer Settings")]
-    public float currentRespawnTime = 60f;
-    private float minRespawnTime = 30f;
-    private float timeReduction = 5f;
+    [Header("Timing Settings")]
+    public float currentRespawnTime = 15f;
+    public float timeAtDock = 6f;
+    private float minRespawnTime = 15f;
+    private float timeReduction = 0f;
 
     [Header("Player & Delivery Settings")]
     public Transform playerBackpack;
@@ -84,35 +86,25 @@ public class BoatManager : MonoBehaviour
     public void AddPlayerToZone() { PlayersInZone++; playerInZone = true; }
     public void RemovePlayerFromZone() { PlayersInZone = Mathf.Max(0, PlayersInZone - 1); playerInZone = PlayersInZone > 0; }
 
-    private float GetAdjustedTimePerItem()
-    {
-        if (PlayersInZone <= 1) return timePerItem;
-        return timePerItem / PlayersInZone;
-    }
-
     IEnumerator BoatRoutine()
     {
         while (true)
         {
-            // 1. WACHTEN & TIMER
+            
             currentState = BoatState.Gone;
             transform.position = new Vector3(0, -100, 0);
 
             if (boatTimerText != null) boatTimerText.gameObject.SetActive(true);
 
-            float timer = currentRespawnTime;
-            while (timer > 0)
+            float respawnTimer = currentRespawnTime;
+            while (respawnTimer > 0)
             {
-                if (boatTimerText != null)
-                {
-                    string typeLabel = isSellBoat ? "GOUD BOOT" : "SCORE BOOT";
-                    boatTimerText.text = $"{typeLabel}\n{Mathf.Ceil(timer)}s";
-                }
-                timer -= Time.deltaTime;
+                string typeLabel = isSellBoat ? "VOLGENDE: GOUD" : "VOLGENDE: SCORE";
+                boatTimerText.text = $"{typeLabel}\n{Mathf.Ceil(respawnTimer)}s";
+                respawnTimer -= Time.deltaTime;
                 yield return null;
             }
 
-            if (boatTimerText != null) boatTimerText.gameObject.SetActive(false);
             if (possibleCrops.Count == 0) yield break;
 
             if (TileManager.Instance != null)
@@ -124,11 +116,9 @@ public class BoatManager : MonoBehaviour
 
             
             for (int i = 0; i < transform.childCount; i++)
-            {
                 transform.GetChild(i).gameObject.SetActive(false);
-            }
 
-            // 2. VAAR NAAR DOK
+            
             transform.position = startPoint.position;
             currentState = BoatState.Coming;
             while (Vector3.Distance(transform.position, dockPoint.position) > 0.5f)
@@ -137,21 +127,24 @@ public class BoatManager : MonoBehaviour
                 yield return null;
             }
 
-            // 3. VULLEN
+            
             currentState = BoatState.Waiting;
+            if (boatTimerText != null) boatTimerText.gameObject.SetActive(true);
             if (sfxSource != null && sfxClip != null) sfxSource.PlayOneShot(sfxClip);
 
-            while (currentFilledSlots < totalSlots)
+            float dockTimer = timeAtDock;
+            while (dockTimer > 0 && currentFilledSlots < totalSlots)
             {
+                
+                if (boatTimerText != null)
+                    boatTimerText.text = $"TIJD: {Mathf.Ceil(dockTimer)}s\n{currentFilledSlots}/{totalSlots}";
+
                 if (playerInZone && CropManager.Instance != null)
                 {
                     if (CropManager.Instance.TryRemoveHarvestedCrop(currentRequiredCrop, 1))
                     {
                         SpawnFlyingItem();
-
-                        
                         GiveReward();
-
                         currentFilledSlots++;
 
                         while (currentFilledSlots >= _amountPerCrate * (currentCrate + 1) && currentCrate < 6)
@@ -160,14 +153,24 @@ public class BoatManager : MonoBehaviour
                                 transform.GetChild(currentCrate).gameObject.SetActive(true);
                             currentCrate++;
                         }
-
-                        yield return new WaitForSeconds(GetAdjustedTimePerItem());
+                        yield return new WaitForSeconds(timePerItem / Mathf.Max(1, PlayersInZone));
                     }
                 }
+                dockTimer -= Time.deltaTime;
                 yield return null;
             }
 
-            // 4. VERTREK
+          
+            if (currentFilledSlots < totalSlots)
+            {
+                Debug.Log("Boot niet vol! Strafpunten.");
+                if (scoreUIScript != null)
+                    scoreUIScript.AddScore(-scorePenalty); 
+            }
+
+            if (boatTimerText != null) boatTimerText.gameObject.SetActive(false);
+
+           
             yield return new WaitForSeconds(1f);
             currentState = BoatState.Leaving;
 
@@ -177,10 +180,8 @@ public class BoatManager : MonoBehaviour
                 yield return null;
             }
 
-            
+           
             currentRespawnTime = Mathf.Max(minRespawnTime, currentRespawnTime - timeReduction);
-
-            
             isSellBoat = !isSellBoat;
             if (boats.Length >= 2)
             {
@@ -199,15 +200,8 @@ public class BoatManager : MonoBehaviour
         }
         else
         {
-           
             if (scoreUIScript != null)
-            {
                 scoreUIScript.AddScore(scorePerItem);
-            }
-            else
-            {
-                Debug.LogWarning("BoatManager: Geen ScoreUI script gevonden in de Inspector!");
-            }
         }
     }
 
