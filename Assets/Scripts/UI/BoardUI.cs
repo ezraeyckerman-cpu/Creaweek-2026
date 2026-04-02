@@ -67,21 +67,26 @@ public class BoardUI : MonoBehaviour
         _potatoImage.SetActive(false);
         _pumpkinImage.SetActive(false);
         _carrotImage.SetActive(false);
+        _amountText.gameObject.SetActive(false);
 
         // Enable correct crop
         switch (boatManager.currentRequiredCrop)
         {
             case "Mais":
                 _cornImage.SetActive(true);
+                _amountText.gameObject.SetActive(true);
                 break;
             case "Potato":
                 _potatoImage.SetActive(true);
+                _amountText.gameObject.SetActive(true);
                 break;
             case "Pumpkin":
                 _pumpkinImage.SetActive(true);
+                _amountText.gameObject.SetActive(true);
                 break;
             case "Carrot":
                 _carrotImage.SetActive(true);
+                _amountText.gameObject.SetActive(true);
                 break;
         }
     }
@@ -92,7 +97,7 @@ public class BoardUI : MonoBehaviour
         _potatoImage.SetActive(false);
         _pumpkinImage.SetActive(false);
         _carrotImage.SetActive(false);
-        _amountText.text = " ";
+        _amountText.gameObject.SetActive(false);
 
         _doneImage.SetActive(true);
 
