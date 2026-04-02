@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private CharacterController controller;
     [SerializeField] private Renderer renderer;
     [SerializeField] private float stunTime;
+    [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioClip walkingClip;
 
     [Header("movement variables")]
     [SerializeField] private float playerSpeed;
@@ -27,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
     public bool IsPerformingAction;
     private ParticleSystem.EmissionModule _emission;
 
+    private bool IsPlaying;
+
     void Start()
     {
         //_movementAction = playerInput.currentActionMap.FindAction("Move");
@@ -40,6 +44,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleMovement()
     {
+        if (!IsPlaying)
+        {
+            sfxSource.Play();
+
+        }
         if (Bombed && !HasStunned)
         {
             StartCoroutine(StunTime());
@@ -49,6 +58,8 @@ public class PlayerMovement : MonoBehaviour
         {
             _emission.enabled = false; // when stopped
             _animator.SetBool("IsWalking", false);
+            sfxSource.Stop();
+            IsPlaying = false;
         }
         
         Vector3 movement = new Vector3(_movementInput.x, 0f, _movementInput.y) * playerSpeed;
@@ -73,13 +84,31 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Vector3 XZVelocity = new Vector3(transform.forward.x, 0, transform.forward.z) * movement.magnitude;
-        if (HasStunned && Bombed) XZVelocity = _velocity;
-        if (HasStunned) XZVelocity = Vector3.zero;
+
+        if (HasStunned && Bombed)
+        {
+            XZVelocity = _velocity;
+            sfxSource.Stop();
+            IsPlaying = false;
+        }
+
+        if (HasStunned) 
+        { 
+            XZVelocity = Vector3.zero;
+            sfxSource.Stop();
+            IsPlaying = false;
+        }
+
         _velocity = new Vector3(XZVelocity.x, _velocity.y, XZVelocity.z);
         _emission.enabled = true;  // when moving       
 
         //_movementParticles.Play();
         controller.Move(_velocity * Time.deltaTime);
+        if (!IsPlaying)
+        {
+            sfxSource.Play();
+            IsPlaying = true;
+        }
     }
         
     public void InitializePlayer(PlayerConfiguration pc)

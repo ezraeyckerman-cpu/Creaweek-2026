@@ -8,13 +8,21 @@ public class ItemHolder : MonoBehaviour
     [SerializeField] private BoxCollider collider;
     [SerializeField] private LayerMask toolLayer;
     [SerializeField] private FarmInteraction FarmInteraction;
+    [SerializeField] private AudioClip pickupSound;
+    [SerializeField] private AudioSource sfxSource;
     private InputAction _action;
 
     private PlayerConfiguration _configuration;
     private GameObject _tool;
     private bool IsHoldingItem;
     private SeedIdentifier _heldSeedIdentifier;
+    private float _defaultPitch;
 
+
+    private void Start()
+    {
+        _defaultPitch = sfxSource.pitch;
+    }
     private void Update()
     {
         if (_action == null) return;
@@ -42,13 +50,14 @@ public class ItemHolder : MonoBehaviour
                 FarmInteraction.Mode = InteractionMode.Idle;
                 return;
             }
-
+            sfxSource.pitch = _defaultPitch;
             _tool = overlaps[0].gameObject;
             _tool.transform.parent = holdPoint;
             _tool.transform.position = holdPoint.position;
             _tool.transform.rotation = holdPoint.rotation;
             _tool.GetComponent<Rigidbody>().isKinematic = true;
             IsHoldingItem = true;
+            sfxSource.PlayOneShot(pickupSound);
             string type = overlaps[0].tag;
 
             switch (type)
@@ -78,6 +87,8 @@ public class ItemHolder : MonoBehaviour
             _tool = null;
             _heldSeedIdentifier = null;
             FarmInteraction.Mode = InteractionMode.Idle;
+            sfxSource.pitch = sfxSource.pitch - .3f;
+            sfxSource.PlayOneShot(pickupSound);
             IsHoldingItem = false;
         }
     }
