@@ -24,6 +24,7 @@ public partial class PlantedCrop : MonoBehaviour
     [Space(10), Header("Particles effects")]
     [SerializeField] private VisualEffect _poofEffect;
     [SerializeField] private VisualEffect _starEffect;
+    [SerializeField] private VisualEffect _twinkleEffect;
 
     private void Start()
     {
@@ -109,6 +110,9 @@ public partial class PlantedCrop : MonoBehaviour
     {
         _poofEffect.Play();
         if(playStars)
+        {
+            _twinkleEffect.Play();
             _starEffect.Play();
+        }
     }
 }
