@@ -2441,9 +2441,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ScoreUI
   score: {fileID: 1703607504}
   scoreStates:
-  - {fileID: 1239027692}
-  - {fileID: 70340381}
   - {fileID: 1022991762}
+  - {fileID: 70340381}
+  - {fileID: 1239027692}
 --- !u!1001 &492439451
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3149,8 +3149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoatManager
   boats:
-  - {fileID: 1385832520}
   - {fileID: 1041175833}
+  - {fileID: 1385832520}
   startPoint: {fileID: 1634535452}
   dockPoint: {fileID: 1519018466}
   exitPoint: {fileID: 1107391082}
@@ -3166,11 +3166,11 @@ MonoBehaviour:
     cropPrefab: {fileID: 919132149155446097, guid: 3b1c9e37f75dd3240ae91a85d5d4ff7d, type: 3}
   goldPerItem: 15
   scorePerItem: 100
-  scorePenalty: 50
+  scorePenalty: 10
   boatTimerText: {fileID: 1017108191}
-  scoreUIScript: {fileID: 0}
+  scoreUIScript: {fileID: 458408044}
   currentRespawnTime: 15
-  timeAtDock: 30
+  timeAtDock: 60
   playerBackpack: {fileID: 2035444825}
   totalSlots: 5
   timePerItem: 1

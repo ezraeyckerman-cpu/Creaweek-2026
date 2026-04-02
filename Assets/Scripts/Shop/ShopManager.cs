@@ -29,7 +29,7 @@ public class ShopManager : MonoBehaviour
         return false;
     }
 
-    void UpdateGoldUI()
+    public void UpdateGoldUI()
     {
         if (goldText != null) goldText.text = $"{currentGold}";
     }
