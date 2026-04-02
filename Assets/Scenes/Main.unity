@@ -3147,8 +3147,8 @@ MonoBehaviour:
     cropPrefab: {fileID: 919132149155446097, guid: 3b1c9e37f75dd3240ae91a85d5d4ff7d, type: 3}
   - cropName: Potato
     cropPrefab: {fileID: 919132149155446097, guid: 3b1c9e37f75dd3240ae91a85d5d4ff7d, type: 3}
-  goldPerItem: 15
-  scorePerItem: 100
+  goldPerItem: 5
+  scorePerItem: 5
   scorePenalty: 10
   boatTimerText: {fileID: 1017108191}
   scoreUIScript: {fileID: 458408044}
