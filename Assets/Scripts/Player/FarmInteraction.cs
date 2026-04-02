@@ -173,6 +173,7 @@ public class FarmInteraction : MonoBehaviour
                 if (cropData != null)
                 {
                     _tile.PlantPlot(cropData);
+                    seedIdentifier.Amount--;
                     Debug.Log($"Planted {seedIdentifier.CropName}");
                 }
             }
