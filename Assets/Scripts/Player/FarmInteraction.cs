@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -18,6 +19,8 @@ public class FarmInteraction : MonoBehaviour
     [SerializeField] private float holdInterval = 0.5f;
     [SerializeField] private PlayerMovement movement;
     [SerializeField] private Animator _animator;
+    [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioClip whoosh;
 
     public InteractionMode Mode = InteractionMode.Idle;
 
@@ -33,6 +36,7 @@ public class FarmInteraction : MonoBehaviour
 
     public ParticleSystem PlowingParticles;
     public List<ParticleSystem> WateringParticles;
+    bool IsPlaying;
 
     private void Start()
     {
@@ -135,16 +139,20 @@ public class FarmInteraction : MonoBehaviour
     void Plowing()
     {
         if (_tile.IsPlowed) return;
+
+        IsPlaying = true;
         TriggerAnimation();
         PlowingParticles.Play();
-
+        if (!IsPlaying) StartCoroutine(AudioDelay(whoosh, 0.1f));
         _progressSlider.value = _holdTimer / holdInterval;
         if (held && _holdTimer >= holdInterval)
         {
+            sfxSource.PlayOneShot(whoosh);
             Debug.Log("p1");
             _tile.PlowPlot();
             _holdTimer = 0;
             _animationTriggeredThisSession = false;
+            IsPlaying = false;
             return;
         }
         _holdTimer += Time.deltaTime;
@@ -225,5 +233,11 @@ public class FarmInteraction : MonoBehaviour
         {
             _action = obj.action;
         }
+    }
+
+    IEnumerator AudioDelay(AudioClip clip, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        sfxSource.PlayOneShot(clip);
     }
 }
