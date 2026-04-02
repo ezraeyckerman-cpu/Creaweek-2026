@@ -39,8 +39,8 @@ public class BoatManager : MonoBehaviour
 
     [HideInInspector] public int PlayersInZone = 0;
     private bool playerInZone = false;
-    private string currentRequiredCrop;
-    private int currentFilledSlots = 0;
+    public string currentRequiredCrop;
+    public int currentFilledSlots = 0;
 
     // Boot Type: Wisselt tussen Goud en Score
     private bool isSellBoat = true;
