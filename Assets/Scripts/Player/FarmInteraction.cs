@@ -173,6 +173,7 @@ public class FarmInteraction : MonoBehaviour
                 if (cropData != null)
                 {
                     _tile.PlantPlot(cropData);
+                    seedIdentifier.Amount--;
                     Debug.Log($"Planted {seedIdentifier.CropName}");
                 }
             }
@@ -186,7 +187,7 @@ public class FarmInteraction : MonoBehaviour
     void Watering()
     {
         if (_tile.IsWatered) return;
-        TriggerAnimation();
+        //TriggerAnimation();
         WateringParticles.ForEach(x => x.Play());
 
         _progressSlider.value = _holdTimer / holdInterval;
