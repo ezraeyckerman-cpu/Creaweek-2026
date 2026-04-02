@@ -34,11 +34,13 @@ public class BoatManager : MonoBehaviour
     public int totalSlots = 6;
     public float timePerItem = 0.8f;
     public float boatRespawnTime = 10f;
+    [SerializeField] private AudioSource sfxSource;
+    [SerializeField] private AudioClip sfxClip;
 
     [HideInInspector] public int PlayersInZone = 0;
     private bool playerInZone = false;
-    private string currentRequiredCrop;
-    private int currentFilledSlots = 0;
+    public string currentRequiredCrop;
+    public int currentFilledSlots = 0;
 
     // Boot Type: Wisselt tussen Goud en Score
     private bool isSellBoat = true;
@@ -120,6 +122,7 @@ public class BoatManager : MonoBehaviour
 
             // 3. VULLEN
             currentState = BoatState.Waiting;
+            sfxSource.PlayOneShot(sfxClip);
             while (currentFilledSlots < totalSlots)
             {
                 if (playerInZone && CropManager.Instance != null)

@@ -9,6 +9,7 @@ TagManager:
   - Sickle
   - Seed
   - Tile
+  - Boat
   layers:
   - Default
   - TransparentFX

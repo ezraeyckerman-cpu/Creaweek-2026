@@ -17,6 +17,7 @@ public class FarmInteraction : MonoBehaviour
     [SerializeField] private Slider _progressSlider;
     [SerializeField] private float holdInterval = 0.5f;
     [SerializeField] private PlayerMovement movement;
+    [SerializeField] private Animator _animator;
 
     public InteractionMode Mode = InteractionMode.Idle;
 
@@ -28,7 +29,7 @@ public class FarmInteraction : MonoBehaviour
     [SerializeField] private float _holdTimer;
     private bool held;
 
-    private bool ISPlaying;
+    private bool _animationTriggeredThisSession;
 
     public ParticleSystem PlowingParticles;
     public List<ParticleSystem> WateringParticles;
@@ -36,6 +37,10 @@ public class FarmInteraction : MonoBehaviour
     private void Start()
     {
         _itemHolder = GetComponent<ItemHolder>();
+        
+        if (_animator == null)
+            _animator = GetComponent<Animator>();
+        
         _progressSlider.gameObject.SetActive(false);
     }
 
@@ -87,6 +92,7 @@ public class FarmInteraction : MonoBehaviour
         {
             _holdTimer = 0;
             _progressSlider.gameObject.SetActive(false);
+            _animationTriggeredThisSession = false;
             return;
         }
 
@@ -111,28 +117,34 @@ public class FarmInteraction : MonoBehaviour
         }
     }
 
-    [SerializeField] private Animator _animator;
-
     void TriggerAnimation()
     {
-        if (ISPlaying) return;
-        _animator.SetTrigger("UseTool");
+        if (_animationTriggeredThisSession) return;
+        if (_animator != null)
+        {
+            _animator.SetTrigger("UseTool");
+            _animationTriggeredThisSession = true;
+            Debug.Log("Animation triggered!");
+        }
+        else
+        {
+            Debug.LogWarning("Animator is null on FarmInteraction!");
+        }
     }
 
     void Plowing()
     {
         if (_tile.IsPlowed) return;
         TriggerAnimation();
-        ISPlaying = true;
         PlowingParticles.Play();
 
-    _progressSlider.value = _holdTimer / holdInterval;
+        _progressSlider.value = _holdTimer / holdInterval;
         if (held && _holdTimer >= holdInterval)
         {
             Debug.Log("p1");
             _tile.PlowPlot();
             _holdTimer = 0;
-            ISPlaying = false;
+            _animationTriggeredThisSession = false;
             return;
         }
         _holdTimer += Time.deltaTime;
@@ -142,7 +154,6 @@ public class FarmInteraction : MonoBehaviour
     {
         if (_tile.IsPlanted) return;
         TriggerAnimation();
-        ISPlaying = true;
 
         _progressSlider.value = _holdTimer / holdInterval;
         if (held && _holdTimer >= holdInterval)
@@ -158,7 +169,7 @@ public class FarmInteraction : MonoBehaviour
                 }
             }
             _holdTimer = 0;
-            ISPlaying = false;
+            _animationTriggeredThisSession = false;
             return;
         }
         _holdTimer += Time.deltaTime;
@@ -168,7 +179,6 @@ public class FarmInteraction : MonoBehaviour
     {
         if (_tile.IsWatered) return;
         TriggerAnimation();
-        ISPlaying = true;
         WateringParticles.ForEach(x => x.Play());
 
         _progressSlider.value = _holdTimer / holdInterval;
@@ -177,7 +187,7 @@ public class FarmInteraction : MonoBehaviour
             Debug.Log("w1");
             _tile.WaterPlot();
             _holdTimer = 0;
-            ISPlaying = false;
+            _animationTriggeredThisSession = false;
             return;
         }
         _holdTimer += Time.deltaTime;
@@ -187,7 +197,6 @@ public class FarmInteraction : MonoBehaviour
     {
         if (!_tile.IsReadyToHarvest) return;
         TriggerAnimation();
-        ISPlaying = true;
 
         _progressSlider.value = _holdTimer / holdInterval;
         if (held && _holdTimer >= holdInterval)
@@ -198,7 +207,7 @@ public class FarmInteraction : MonoBehaviour
             if(crop != null)
                 crop.RequestHarvest();
             _holdTimer = 0;
-            ISPlaying = false;
+            _animationTriggeredThisSession = false;
             return;
         }
         _holdTimer += Time.deltaTime;
@@ -212,11 +221,9 @@ public class FarmInteraction : MonoBehaviour
 
     private void Input_onActionTriggered1(InputAction.CallbackContext obj)
     {
+        if (obj.action.name == "Interact" && _action == null)
         {
-            if (obj.action.name == "Interact" && _action == null)
-            {
-                _action = obj.action;
-            }
+            _action = obj.action;
         }
     }
 }
