@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class ScoreUI : MonoBehaviour
 {
-    private TMP_Text score;
-    private GameObject[] scoreStates;
+    [SerializeField] private TMP_Text score;
+    [SerializeField] private GameObject[] scoreStates;
 
-    private float scoreValue = 50;
+    private int scoreValue = 50;
 
     private void Update()
     {
@@ -32,5 +32,10 @@ public class ScoreUI : MonoBehaviour
         }
 
         score.text = scoreValue.ToString();
+    }
+
+    public void AddScore(int score)
+    {
+        scoreValue += score;
     }
 }
