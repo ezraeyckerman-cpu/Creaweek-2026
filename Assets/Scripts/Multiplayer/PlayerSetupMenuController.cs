@@ -9,6 +9,7 @@ public class PlayerSetupMenuController : MonoBehaviour
     [SerializeField] private GameObject _readyPanel;
     [SerializeField] private GameObject _menuPanel;
     [SerializeField] private Button _readyButton;
+    [SerializeField] private TextMeshProUGUI _readyButtonText;
 
     private float _ignoreInputTime = .5f;
     private int _playerId;
@@ -48,6 +49,7 @@ public class PlayerSetupMenuController : MonoBehaviour
 
         PlayerConfigurationManager.Instance.ReadyPlayer(_playerId);
         _readyButton.gameObject.SetActive(true);
+        _readyButtonText.text = "Ready!";
     }
 
     IEnumerator SetColorDelay()
