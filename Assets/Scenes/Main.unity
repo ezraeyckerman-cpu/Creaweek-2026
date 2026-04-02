@@ -3018,6 +3018,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1330991527706471195, guid: f800e249dff2ba44aac997c966a0dcd4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5177447351391671361, guid: f800e249dff2ba44aac997c966a0dcd4, type: 3}
       propertyPath: m_Name
       value: Boat
@@ -3144,7 +3148,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34700efd51a054e4692027facb5f4ac6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoatManager
-  boats: []
+  boats:
+  - {fileID: 1385832520}
+  - {fileID: 1041175833}
   startPoint: {fileID: 1634535452}
   dockPoint: {fileID: 1519018466}
   exitPoint: {fileID: 1107391082}
@@ -3160,9 +3166,11 @@ MonoBehaviour:
     cropPrefab: {fileID: 919132149155446097, guid: 3b1c9e37f75dd3240ae91a85d5d4ff7d, type: 3}
   goldPerItem: 15
   scorePerItem: 100
+  scorePenalty: 50
   boatTimerText: {fileID: 1017108191}
   scoreUIScript: {fileID: 458408044}
   currentRespawnTime: 15
+  timeAtDock: 6
   playerBackpack: {fileID: 2035444825}
   totalSlots: 5
   timePerItem: 1
@@ -6171,6 +6179,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1031254842}
   m_CullTransparentMesh: 1
+--- !u!1 &1041175833 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1369283045219531922, guid: f800e249dff2ba44aac997c966a0dcd4, type: 3}
+  m_PrefabInstance: {fileID: 593522732}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1085188643
 GameObject:
   m_ObjectHideFlags: 0
@@ -7427,6 +7440,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 779248762116803265, guid: 70fd0ff7c34286947b994f9be2c848c0, type: 3}
   m_PrefabInstance: {fileID: 2045712729}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1385832520 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1330991527706471195, guid: f800e249dff2ba44aac997c966a0dcd4, type: 3}
+  m_PrefabInstance: {fileID: 593522732}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1412718319
 GameObject:
