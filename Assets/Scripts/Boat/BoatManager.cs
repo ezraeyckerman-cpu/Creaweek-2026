@@ -67,8 +67,9 @@ public class BoatManager : MonoBehaviour
         InitializeCropDictionary();
         _amountPerCrate = (float)totalSlots / 6f;
 
-        // Zorg dat de boot bij start op de startpositie staat
+        // Startpositie instellen en zorgen dat hij onzichtbaar begint
         transform.position = startPoint.position;
+        UpdateBoatVisibility(false);
 
         StartCoroutine(BoatRoutine());
     }
@@ -94,10 +95,9 @@ public class BoatManager : MonoBehaviour
     {
         while (true)
         {
-            // --- STATE: GONE (WACHTEN OP START) ---
+            // --- STATE: GONE ---
             currentState = BoatState.Gone;
-
-            // De boot blijft nu gewoon op het startpunt staan in plaats van onder de grond te gaan
+            UpdateBoatVisibility(false); // Zorg dat de boot niet zichtbaar is tijdens het wachten
             transform.position = startPoint.position;
 
             if (boatTimerText != null) boatTimerText.gameObject.SetActive(true);
@@ -105,30 +105,28 @@ public class BoatManager : MonoBehaviour
             float respawnTimer = currentRespawnTime;
             while (respawnTimer > 0)
             {
-                
-                string typeLabel = isSellBoat ? "GOUD" : "SCORE";
                 boatTimerText.text = $"{Mathf.Ceil(respawnTimer)}";
-
                 respawnTimer -= Time.deltaTime;
                 yield return null;
             }
 
             if (possibleCrops.Count == 0) yield break;
 
-            if (TileManager.Instance != null)
-                TileManager.Instance.GenerateBombs();
-
+            // Voorbereiden voor vertrek
             currentRequiredCrop = possibleCrops[Random.Range(0, possibleCrops.Count)];
             currentFilledSlots = 0;
             currentCrate = 0;
 
-            // Reset visuele kratten
+            // Reset kratten (kinderen van dit object)
             for (int i = 0; i < transform.childCount; i++)
                 transform.GetChild(i).gameObject.SetActive(false);
 
+            if (TileManager.Instance != null)
+                TileManager.Instance.GenerateBombs();
+
             // --- STATE: COMING ---
             currentState = BoatState.Coming;
-            // Tekst kan uit tijdens het varen, of aanblijven. Hier zetten we het uit:
+            UpdateBoatVisibility(true); // Boot wordt nu pas zichtbaar!
             if (boatTimerText != null) boatTimerText.gameObject.SetActive(false);
 
             while (Vector3.Distance(transform.position, dockPoint.position) > 0.1f)
@@ -146,7 +144,7 @@ public class BoatManager : MonoBehaviour
             while (dockTimer > 0 && currentFilledSlots < totalSlots)
             {
                 if (boatTimerText != null)
-                    boatTimerText.text = $"{Mathf.Ceil(respawnTimer)}";
+                    boatTimerText.text = $"{Mathf.Ceil(dockTimer)}"; // Toon resterende dock tijd
 
                 if (playerInZone && CropManager.Instance != null)
                 {
@@ -170,11 +168,8 @@ public class BoatManager : MonoBehaviour
             }
 
             // Strafpunten check
-            if (currentFilledSlots < totalSlots)
-            {
-                if (scoreUIScript != null)
-                    scoreUIScript.AddScore(-scorePenalty);
-            }
+            if (currentFilledSlots < totalSlots && scoreUIScript != null)
+                scoreUIScript.AddScore(-scorePenalty);
 
             if (boatTimerText != null) boatTimerText.gameObject.SetActive(false);
 
@@ -188,17 +183,26 @@ public class BoatManager : MonoBehaviour
                 yield return null;
             }
 
-            // Wissel type en reset naar startpositie
-            isSellBoat = !isSellBoat;
-            if (boats.Length >= 2)
-            {
-                boats[0].SetActive(isSellBoat);
-                boats[1].SetActive(!isSellBoat);
-            }
+            // --- DESPAWN & RESET ---
+            UpdateBoatVisibility(false); // Boot is weg, dus zet visuals uit
 
-            // Zet de boot direct weer op de startpositie voor de volgende timer
-            transform.position = startPoint.position;
+            // Type wisselen voor de volgende keer
+            isSellBoat = !isSellBoat;
             currentRespawnTime = Mathf.Max(minRespawnTime, currentRespawnTime - timeReduction);
+
+            // Onzichtbaar terug naar start voor de volgende timer loop
+            transform.position = startPoint.position;
+        }
+    }
+
+    // Handige functie om de juiste boot aan of uit te zetten
+    void UpdateBoatVisibility(bool visible)
+    {
+        if (boats.Length >= 2)
+        {
+            // Als visible true is, check dan ook welk type (goud/score) actief moet zijn
+            boats[0].SetActive(visible && isSellBoat);
+            boats[1].SetActive(visible && !isSellBoat);
         }
     }
 
